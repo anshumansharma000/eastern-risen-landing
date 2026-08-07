@@ -1,0 +1,59 @@
+{
+  "legal_name": "Eastern Risen Expedition Pvt. Ltd.",
+  "brand_name": "Eastern Risen",
+  "tagline": "Make Your Own Travel",
+  "promotional_line": "Make Your Own Travel Safely",
+  "founder": "Bijan Kumar Muduli",
+  "emails": [
+    "info@easternrisen.com",
+    "bijan@easternrisen.com"
+  ],
+  "phones_as_published": [
+    "09777564596",
+    "09777564695",
+    "+9777564695"
+  ],
+  "head_office": {
+    "address_lines": [
+      "Plot No.2382/9794 (First Floor), Elegance Villa",
+      "Lane-03, Near Puri ByPass, NH-316",
+      "Badagada Brit Colony, PS-Badagada",
+      "Bhubaneswar-751018, Khurda, Odisha, India"
+    ]
+  },
+  "guwahati_office": {
+    "address_lines": [
+      "2nd Floor, Hamtola",
+      "Kamakhya Dham",
+      "Guwahati-781010"
+    ]
+  },
+  "channel_offices": [
+    "Delhi",
+    "Mumbai",
+    "Kolkata",
+    "Hyderabad",
+    "Bengaluru",
+    "Chennai",
+    "Ahmedabad",
+    "Guwahati"
+  ],
+  "memberships_as_claimed": [
+    "IATO",
+    "ADTOI",
+    "ATOAI",
+    "ITTA",
+    "TOFTigers"
+  ],
+  "recognition_as_claimed": [
+    "Recognised by Ministry of Tourism, Government of India",
+    "Authorised to operate in PVTG area",
+    "Accredited by Odisha Tourism, Government of Odisha"
+  ],
+  "source_urls": [
+    "http://www.easternrisen.com/about.asp",
+    "http://www.easternrisen.com/contact.asp",
+    "http://www.easternrisen.com/"
+  ],
+  "verification_status": "Legacy website claims; verify before publication"
+}

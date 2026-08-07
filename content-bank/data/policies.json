@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Disclaimer",
+    "source_url": "http://www.easternrisen.com/disclaimer.asp",
+    "legacy_status": "heading_only",
+    "redesign_status": "write_required"
+  },
+  {
+    "name": "Privacy Policy",
+    "source_url": "http://www.easternrisen.com/privcy_pol.asp",
+    "legacy_status": "heading_only",
+    "redesign_status": "write_required"
+  },
+  {
+    "name": "Terms of Use",
+    "source_url": "http://www.easternrisen.com/terms_use.asp",
+    "legacy_status": "heading_only",
+    "redesign_status": "write_required"
+  },
+  {
+    "name": "Feedback",
+    "source_url": "http://www.easternrisen.com/feedback.asp",
+    "legacy_status": "heading_only",
+    "redesign_status": "design_decision_required"
+  },
+  {
+    "name": "Booking and cancellation policy",
+    "source_url": null,
+    "legacy_status": "not_found",
+    "redesign_status": "write_required"
+  },
+  {
+    "name": "Refund policy",
+    "source_url": null,
+    "legacy_status": "not_found",
+    "redesign_status": "write_required"
+  },
+  {
+    "name": "Cookie/analytics notice",
+    "source_url": null,
+    "legacy_status": "not_found",
+    "redesign_status": "write_if_applicable"
+  }
+]

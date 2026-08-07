@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-08-06T08:34:11.941997+00:00",
+  "source_base_url": "http://www.easternrisen.com/",
+  "pages_discovered": 112,
+  "pages_normalized": 108,
+  "tour_page_count": 94,
+  "tour_markdown_count": 94,
+  "itinerary_markdown_count": 78,
+  "catalog_record_count": 84,
+  "catalog_occurrence_count": 126,
+  "catalog_review_queue_count": 32,
+  "asset_url_count": 213,
+  "assets_downloaded": 178,
+  "failed_page_count": 4,
+  "failed_asset_count": 35
+}

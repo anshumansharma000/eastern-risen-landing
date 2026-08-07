@@ -1,0 +1,90 @@
+{
+  "primary": [
+    {
+      "label": "Home",
+      "legacy_url": "http://www.easternrisen.com/default.asp"
+    },
+    {
+      "label": "About Us",
+      "legacy_url": "http://www.easternrisen.com/about.asp"
+    },
+    {
+      "label": "Tours",
+      "legacy_url": null
+    },
+    {
+      "label": "Our Services",
+      "legacy_url": null
+    },
+    {
+      "label": "Contact Us",
+      "legacy_url": "http://www.easternrisen.com/contact.asp"
+    }
+  ],
+  "destination_shortcuts": [
+    "India",
+    "Srilanka",
+    "Nepal",
+    "Tibet",
+    "Bhutan"
+  ],
+  "tour_groups": {
+    "India": [
+      "North India",
+      "South India",
+      "North East India",
+      "East India",
+      "West India",
+      "Central India"
+    ],
+    "Odisha": [
+      "Golden Triangle",
+      "Nature",
+      "Wildlife",
+      "Dream Destination",
+      "Western Odisha"
+    ],
+    "Special Interest": [
+      "Wildlife",
+      "Adventure & Trekking",
+      "Ladakh",
+      "Bike Safari",
+      "Tribal",
+      "Spiritual & Shaman",
+      "Buddhist",
+      "Textile"
+    ],
+    "Neighbouring Countries": [
+      "Nepal",
+      "Sri Lanka",
+      "Bhutan",
+      "Tibet"
+    ],
+    "Outbound Holidays": [
+      "Thailand",
+      "Malaysia",
+      "Singapore",
+      "Malaysia & Singapore"
+    ],
+    "Festivals": [
+      "Si-Donyi",
+      "Torgya",
+      "Reh",
+      "Boori Boot",
+      "Mopin",
+      "Sangken",
+      "Hornbill"
+    ]
+  },
+  "footer": [
+    "Home",
+    "About Us",
+    "Photo Gallery",
+    "Contact Us",
+    "Disclaimer",
+    "Privacy Policy",
+    "Terms of Use",
+    "Feedback"
+  ],
+  "status": "Legacy information architecture; labels and grouping should be edited before implementation"
+}
