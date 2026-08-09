@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PlanningCta } from "@/components/PlanningCta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { tours } from "@/lib/tours";
 import { travelStyleDefinitions } from "@/lib/travel-styles";
 
 type Journey = {
@@ -15,6 +16,12 @@ type Journey = {
   imageAlt: string;
 };
 
+function tourMedia(slug: string) {
+  const tour = tours.find((entry) => entry.slug === slug);
+  if (!tour) throw new Error(`Missing signature journey: ${slug}`);
+  return { image: tour.image, imageAlt: tour.imageAlt };
+}
+
 const journeys: Journey[] = [
   {
     slug: "odisha-golden-triangle",
@@ -23,8 +30,7 @@ const journeys: Journey[] = [
     duration: "3 nights · 4 days",
     description:
       "Temple cities, the sweep of Chilika and Puri’s coast—an intimate introduction to our home ground.",
-    image: "/images/odisha-temple.webp",
-    imageAlt: "Historic temple architecture in Odisha in warm evening light",
+    ...tourMedia("odisha-golden-triangle"),
   },
   {
     slug: "sikkim-delight",
@@ -33,8 +39,7 @@ const journeys: Journey[] = [
     duration: "10 nights · 11 days",
     description:
       "A considered passage through monasteries, mountain roads and the living cultures of the eastern Himalaya.",
-    image: "/images/sikkim-himalaya.webp",
-    imageAlt: "A Himalayan valley in Sikkim with prayer flags in the foreground",
+    ...tourMedia("sikkim-delight"),
   },
   {
     slug: "north-east-wildlife-tour",
@@ -43,8 +48,7 @@ const journeys: Journey[] = [
     duration: "8 nights · 9 days",
     description:
       "Slow, observant days in some of India’s richest habitats, guided by the rhythms of the forest.",
-    image: "/images/assam-rhino.webp",
-    imageAlt: "An Indian rhinoceros walking through dense green forest",
+    ...tourMedia("north-east-wildlife-tour"),
   },
 ];
 

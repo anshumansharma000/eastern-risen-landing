@@ -2,15 +2,19 @@
 
 ## Production image set
 
-The website uses an original editorial-style image collection in `public/images`.
-The generated source images were converted to high-quality WebP so that the files
-remain sharp while typical transfer sizes stay below 320 KB.
+The journey catalogue uses 84 separate cover images in `public/images/tours`—one
+for every tour, with no reused file paths. The mapping and licensing record lives
+in `content-bank/data/tour_images.json`.
 
-The collection covers the home hero, Odisha, Sikkim, Assam wildlife, Bhutan,
-Ladakh, Kerala, Gujarat, Nepal, Sri Lanka, Southeast Asia, weaving, private road
-transport, air travel and journey planning. Generated scenes are illustrative
-brand imagery and must not be represented as photographs of a particular Eastern
-Risen departure, guest, employee or supplier.
+- 67 high-resolution images were sourced from Wikimedia Commons under reusable
+  Public Domain, CC0 or Creative Commons attribution licences.
+- 17 destination-specific gaps were created as original documentary-style images.
+- All production covers were converted to quality-82 WebP and retain enough
+  resolution for responsive card and detail-page crops.
+- The public `/photo-credits` page preserves creator, source and licence details.
+
+Generated scenes are illustrative brand imagery and must not be represented as
+photographs of a particular Eastern Risen departure, guest, employee or supplier.
 
 ## Assets Eastern Risen must supply
 
@@ -28,9 +32,9 @@ These materials need to be authentic and should not be generated:
    specific fleet or vehicle class.
 6. **Accreditation and association marks** — current vector logos plus evidence
    that Eastern Risen is authorised to display them.
-7. **Destination-specific festival and community photography** — especially
-   Hornbill, tribal, shamanic and community-hosted journeys. These should be
-   licensed documentary images with accurate captions and consent where needed.
+7. **Authentic festival and community upgrades** — the current covers are complete,
+   but first-party Hornbill, tribal, shamanic and community-hosted photography is
+   preferable when accurate captions, licensing and consent are available.
 8. **Accommodation and supplier photography** — use only images provided or
    licensed by the actual property or operator included in an itinerary.
 

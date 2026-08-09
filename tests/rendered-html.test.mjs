@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
+import tourImages from "../content-bank/data/tour_images.json" with { type: "json" };
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -43,6 +45,26 @@ test("server-renders the data-backed tour collection", async () => {
   assert.match(html, /Special Interest &amp; Across India/i);
   assert.match(html, /Season and activity filters will be added/i);
   assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+});
+
+test("assigns one optimized image to every tour", () => {
+  assert.equal(tourImages.length, 84);
+  assert.equal(new Set(tourImages.map((entry) => entry.image)).size, 84);
+  for (const entry of tourImages) {
+    assert.match(entry.image, /^\/images\/tours\/.+\.webp$/);
+    assert.ok(fs.existsSync(new URL(`../public${entry.image}`, import.meta.url)));
+  }
+});
+
+test("server-renders the photo credits", async () => {
+  const response = await render("/photo-credits");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Photo credits \| Eastern Risen<\/title>/i);
+  assert.match(html, /Image provenance/i);
+  assert.match(html, /View source/i);
+  assert.match(html, /Original generated asset created for Eastern Risen/i);
 });
 
 test("server-renders a complete tour detail page", async () => {

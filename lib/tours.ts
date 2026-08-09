@@ -1,4 +1,5 @@
 import catalog from "@/content-bank/data/tour_catalog.json";
+import tourImages from "@/content-bank/data/tour_images.json";
 
 type RawTour = {
   name: string;
@@ -6,6 +7,11 @@ type RawTour = {
   destination_or_route: string;
   category_pages: string[];
   source_urls: string[];
+};
+
+type TourImage = {
+  image: string;
+  brief: string;
 };
 
 export type Tour = {
@@ -21,29 +27,6 @@ export type Tour = {
   imageAlt: string;
   sourceUrl: string;
   status: "Itinerary available";
-};
-
-const imageByRegion: Record<string, string> = {
-  Odisha: "/images/odisha-temple.webp",
-  "Northeast India": "/images/sikkim-himalaya.webp",
-  "North India": "/images/ladakh-trekking.webp",
-  "South India": "/images/kerala-backwaters.webp",
-  "Central India": "/images/assam-rhino.webp",
-  "West India": "/images/gujarat-kutch.webp",
-  India: "/images/hero-odisha-dawn-v2.webp",
-  Nepal: "/images/nepal-kathmandu.webp",
-  Bhutan: "/images/bhutan-monastery.webp",
-  "Sri Lanka": "/images/sri-lanka-galle.webp",
-  Tibet: "/images/ladakh-trekking.webp",
-  "Southeast Asia": "/images/malaysia-penang.webp",
-};
-
-const imageByStyle: Record<string, string> = {
-  "Wildlife & Nature": "/images/assam-rhino.webp",
-  "Textile & Craft": "/images/odisha-weaving.webp",
-  "Spiritual Journeys": "/images/bhutan-monastery.webp",
-  Adventure: "/images/ladakh-trekking.webp",
-  "Culture & Festivals": "/images/sikkim-himalaya.webp",
 };
 
 function slugify(value: string) {
@@ -121,8 +104,17 @@ function createSummary(region: string, style: string, route: string) {
 }
 
 const usedSlugs = new Map<string, number>();
+const tourImageManifest = tourImages as TourImage[];
 
-const mappedTours: Tour[] = (catalog as RawTour[]).map((rawTour) => {
+if (
+  tourImageManifest.length !== (catalog as RawTour[]).length ||
+  tourImageManifest.some((entry) => !entry.image) ||
+  new Set(tourImageManifest.map((entry) => entry.image)).size !== tourImageManifest.length
+) {
+  throw new Error("Every Eastern Risen tour must have one complete, unique image assignment.");
+}
+
+const mappedTours: Tour[] = (catalog as RawTour[]).map((rawTour, index) => {
   const title = sentenceCase(rawTour.name.replace(/\s*\(.*?\)\s*/g, " ").trim());
   const baseSlug = slugify(title) || "journey";
   const occurrence = (usedSlugs.get(baseSlug) ?? 0) + 1;
@@ -130,7 +122,7 @@ const mappedTours: Tour[] = (catalog as RawTour[]).map((rawTour) => {
   const slug = occurrence === 1 ? baseSlug : `${baseSlug}-${occurrence}`;
   const region = inferRegion(rawTour);
   const travelStyle = inferTravelStyle(rawTour);
-  const image = imageByStyle[travelStyle] ?? imageByRegion[region] ?? "/images/hero-odisha-dawn-v2.webp";
+  const tourMedia = tourImageManifest[index];
 
   return {
     slug,
@@ -141,8 +133,8 @@ const mappedTours: Tour[] = (catalog as RawTour[]).map((rawTour) => {
     region,
     travelStyle,
     summary: createSummary(region, travelStyle, rawTour.destination_or_route),
-    image,
-    imageAlt: `${travelStyle} journey in ${region}`,
+    image: tourMedia.image,
+    imageAlt: `${tourMedia.brief}, selected for the ${title} journey`,
     sourceUrl: rawTour.source_urls[0] ?? "",
     status: "Itinerary available",
   };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageSelector } from "@/components/LanguageSelector";
 
@@ -19,8 +20,7 @@ export function SiteHeader({ variant = "overlay", current }: SiteHeaderProps) {
     <header className={`site-header site-header--${variant}`}>
       <div className="shell header-inner">
         <Link className="wordmark notranslate" href="/" aria-label="Eastern Risen home" translate="no">
-          <span className="wordmark__name">Eastern Risen</span>
-          <span className="wordmark__place">Odisha · India</span>
+          <Image className="wordmark__logo" src="/images/eastern-risen-logo.webp" alt="Eastern Risen" width={1252} height={370} unoptimized priority sizes="(max-width: 720px) 160px, 190px" />
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
