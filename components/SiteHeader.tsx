@@ -13,6 +13,7 @@ const links = [
   { key: "styles", label: "Travel styles", href: "/travel-styles" },
   { key: "services", label: "Services", href: "/services" },
   { key: "about", label: "Our approach", href: "/about" },
+  { key: "journal", label: "Journal", href: "/journal" },
 ] as const;
 
 export function SiteHeader({ variant = "overlay", current }: SiteHeaderProps) {

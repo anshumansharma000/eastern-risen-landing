@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { tours } from "@/lib/tours";
 import { travelStyleDefinitions } from "@/lib/travel-styles";
+import { journalEntries } from "@/lib/journal";
 
 type Journey = {
   slug: string;
@@ -52,24 +53,6 @@ const journeys: Journey[] = [
   },
 ];
 
-const fieldNotes = [
-  {
-    label: "Field guide",
-    title: "When Odisha’s coast feels most alive",
-    text: "A seasonal perspective on lagoons, temple towns and the changing light along the Bay of Bengal.",
-  },
-  {
-    label: "On the road",
-    title: "The pleasure of travelling slowly",
-    text: "Why the memorable moments often happen between the landmarks on a carefully paced journey.",
-  },
-  {
-    label: "Travel well",
-    title: "How to be a thoughtful guest",
-    text: "Simple principles for entering communities, sacred spaces and wildlife habitats with respect.",
-  },
-];
-
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
@@ -77,28 +60,28 @@ function Arrow() {
 function JourneyCard({ journey }: { journey: Journey }) {
   return (
     <article className="journey-card">
-      <Link className="journey-card__image" href={`/tours/${journey.slug}`} aria-label={`View the ${journey.title} journey`}>
-        <Image
-          src={journey.image}
-          alt={journey.imageAlt}
-          fill
-          unoptimized
-          loading="lazy"
-          decoding="async"
-          sizes="(max-width: 720px) 88vw, (max-width: 1100px) 45vw, 31vw"
-        />
-      </Link>
-      <div className="journey-card__body">
-        <div className="journey-card__meta">
-          <span>{journey.region}</span>
-          <span>{journey.duration}</span>
+      <Link className="journey-card__link" href={`/tours/${journey.slug}`} aria-label={`View the ${journey.title} journey`}>
+        <div className="journey-card__image">
+          <Image
+            src={journey.image}
+            alt={journey.imageAlt}
+            fill
+            unoptimized
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 720px) 88vw, (max-width: 1100px) 45vw, 31vw"
+          />
         </div>
-        <h3>{journey.title}</h3>
-        <p>{journey.description}</p>
-        <Link className="text-link" href={`/tours/${journey.slug}`}>
-          View journey <Arrow />
-        </Link>
-      </div>
+        <div className="journey-card__body">
+          <div className="journey-card__meta">
+            <span>{journey.region}</span>
+            <span>{journey.duration}</span>
+          </div>
+          <h3>{journey.title}</h3>
+          <p>{journey.description}</p>
+          <span className="text-link">View journey <Arrow /></span>
+        </div>
+      </Link>
     </article>
   );
 }
@@ -152,9 +135,18 @@ export default function Home() {
             </p>
           </div>
           <div className="principles" aria-label="Our travel principles">
-            <div><strong>Local depth</strong><span>Knowledge grounded in place</span></div>
-            <div><strong>Your pace</strong><span>Private and small-group travel</span></div>
-            <div><strong>Personal care</strong><span>A human hand throughout</span></div>
+            <div className="principle-card">
+              <div className="principle-card__art principle-card__art--contours" aria-hidden="true"><i /><i /><i /></div>
+              <strong>Local depth</strong><span>Knowledge grounded in place</span>
+            </div>
+            <div className="principle-card">
+              <div className="principle-card__art principle-card__art--route" aria-hidden="true"><i /><i /><i /></div>
+              <strong>Your pace</strong><span>Private and small-group travel</span>
+            </div>
+            <div className="principle-card">
+              <div className="principle-card__art principle-card__art--horizon" aria-hidden="true"><i /><i /><i /></div>
+              <strong>Personal care</strong><span>A human hand throughout</span>
+            </div>
           </div>
         </section>
 
@@ -255,12 +247,12 @@ export default function Home() {
             <p>Ideas, observations and practical context from the places we know.</p>
           </div>
           <div className="notes__grid">
-            {fieldNotes.map((note, index) => (
+            {journalEntries.slice(0, 3).map((note, index) => (
               <article className="note" key={note.title}>
                 <div className="note__top"><span>{note.label}</span><span>0{index + 1}</span></div>
                 <h3>{note.title}</h3>
-                <p>{note.text}</p>
-                <a href="#plan" aria-label={`Read ${note.title}`}><Arrow /></a>
+                <p>{note.excerpt}</p>
+                <Link href={`/journal#${note.slug}`} aria-label={`Read ${note.title}`}><Arrow /></Link>
               </article>
             ))}
           </div>

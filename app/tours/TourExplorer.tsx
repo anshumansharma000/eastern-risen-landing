@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { TourCard } from "@/components/TourCard";
 import type { Tour } from "@/lib/tours";
 
 type DurationFilter = "1-5" | "6-10" | "11+";
@@ -91,27 +90,6 @@ function sortTours(tours: Tour[], sort: SortOption) {
     if (sort === "longest") return (b.durationDays ?? -1) - (a.durationDays ?? -1);
     return 0;
   });
-}
-
-function TourCard({ tour }: { tour: Tour }) {
-  return (
-    <article className="collection-card">
-      <Link className="collection-card__image" href={`/tours/${tour.slug}`} aria-label={`View ${tour.title}`}>
-        <Image src={tour.image} alt={tour.imageAlt} fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, (max-width: 1100px) 48vw, 31vw" />
-        <span>{tour.travelStyle}</span>
-      </Link>
-      <div className="collection-card__body">
-        <div className="collection-card__meta"><span>{tour.region}</span><span>{tour.duration}</span></div>
-        <h3>{tour.title}</h3>
-        <p>{tour.summary}</p>
-        {tour.route ? <p className="collection-card__route"><strong>Route</strong>{tour.route}</p> : null}
-        <div className="collection-card__footer">
-          <span>{tour.status}</span>
-          <Link className="text-link" href={`/tours/${tour.slug}`}>View journey <span aria-hidden="true">↗</span></Link>
-        </div>
-      </div>
-    </article>
-  );
 }
 
 export function TourExplorer({

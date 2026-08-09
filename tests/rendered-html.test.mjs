@@ -152,3 +152,16 @@ test("server-renders the about page", async () => {
   assert.match(html, /Respect belongs in the itinerary/i);
   assert.doesNotMatch(html, /IATO|ADTOI|ATOAI|TOFTigers/i);
 });
+
+test("server-renders the journal", async () => {
+  const response = await render("/journal");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Journal \| Eastern Risen<\/title>/i);
+  assert.match(html, /Notes from places worth knowing/i);
+  assert.match(html, /When Odisha’s coast feels most alive/i);
+  assert.match(html, /The pleasure of travelling slowly/i);
+  assert.match(html, /The best journeys begin with a good question/i);
+  assert.doesNotMatch(html, /Server Action/i);
+});

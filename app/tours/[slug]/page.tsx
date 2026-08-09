@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TourCard } from "@/components/TourCard";
 import { getTourDetail } from "@/lib/tour-details";
 import { tours } from "@/lib/tours";
 
@@ -140,14 +141,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               <Link className="text-link text-link--large" href="/tours">View all journeys <span aria-hidden="true">↗</span></Link>
             </div>
             <div className="related-journeys__grid">
-              {tour.relatedTours.map((related) => (
-                <article className="related-card" key={related.slug}>
-                  <Link className="related-card__image" href={`/tours/${related.slug}`}>
-                    <Image src={related.image} alt={related.imageAlt} fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 33vw" />
-                  </Link>
-                  <div><p>{related.region} · {related.duration}</p><h3><Link href={`/tours/${related.slug}`}>{related.title}</Link></h3><Link className="text-link" href={`/tours/${related.slug}`}>View journey <span aria-hidden="true">↗</span></Link></div>
-                </article>
-              ))}
+              {tour.relatedTours.map((related) => <TourCard tour={related} key={related.slug} />)}
             </div>
           </section>
         ) : null}
