@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="shell footer__top">
         <div>
           <Link className="wordmark wordmark--footer notranslate" href="/" translate="no">
-            <Image className="wordmark__logo wordmark__logo--footer" src="/images/eastern-risen-logo.webp" alt="Eastern Risen" width={1252} height={370} unoptimized loading="lazy" sizes="220px" />
+            <Image className="wordmark__logo wordmark__logo--footer" src="/images/eastern-risen-logo.png" alt="Eastern Risen" width={922} height={271} unoptimized loading="lazy" sizes="220px" />
           </Link>
           <p>Specialist journeys rooted in Odisha, reaching across India and its neighbouring lands.</p>
         </div>

@@ -72,7 +72,9 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
 .site-header { position: absolute; inset: 0 0 auto; z-index: 40; color: var(--white); }
 .header-inner { min-height: 104px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
 .wordmark { display: inline-flex; width: fit-content; line-height: 1; }
-.wordmark__logo { display: block; width: 190px; height: auto; border-radius: 7px; object-fit: contain; }
+.wordmark__logo { display: block; width: 190px; height: auto; object-fit: contain; }
+.site-header--overlay .wordmark,
+.wordmark--footer { padding: 5px 8px; border-radius: 9px; background: rgba(255,255,255,.9); backdrop-filter: blur(8px); }
 .desktop-nav { display: flex; gap: clamp(22px, 2.4vw, 42px); align-items: center; font-size: 13px; }
 .desktop-nav a { padding: 10px 12px; border-radius: 10px; transition: background .2s ease; }
 .desktop-nav a:hover { background: rgba(255,255,255,.12); }

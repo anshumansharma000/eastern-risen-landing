@@ -20,7 +20,7 @@ export function SiteHeader({ variant = "overlay", current }: SiteHeaderProps) {
     <header className={`site-header site-header--${variant}`}>
       <div className="shell header-inner">
         <Link className="wordmark notranslate" href="/" aria-label="Eastern Risen home" translate="no">
-          <Image className="wordmark__logo" src="/images/eastern-risen-logo.webp" alt="Eastern Risen" width={1252} height={370} unoptimized priority sizes="(max-width: 720px) 160px, 190px" />
+          <Image className="wordmark__logo" src="/images/eastern-risen-logo.png" alt="Eastern Risen" width={922} height={271} unoptimized priority sizes="(max-width: 720px) 160px, 190px" />
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
