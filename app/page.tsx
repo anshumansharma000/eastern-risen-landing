@@ -1,54 +1,52 @@
 import Image from "next/image";
+import Link from "next/link";
+import { PlanningCta } from "@/components/PlanningCta";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { travelStyleDefinitions } from "@/lib/travel-styles";
 
 type Journey = {
+  slug: string;
   title: string;
   region: string;
   duration: string;
   description: string;
   image: string;
   imageAlt: string;
-  className?: string;
 };
 
 const journeys: Journey[] = [
   {
+    slug: "odisha-golden-triangle",
     title: "Odisha Golden Triangle",
     region: "Odisha · Heritage & coast",
     duration: "3 nights · 4 days",
     description:
       "Temple cities, the sweep of Chilika and Puri’s coast—an intimate introduction to our home ground.",
-    image: "/images/odisha-golden-triangle.jpg",
+    image: "/images/odisha-temple.webp",
     imageAlt: "Historic temple architecture in Odisha in warm evening light",
-    className: "journey-card--feature",
   },
   {
+    slug: "sikkim-delight",
     title: "Sikkim Delight",
     region: "Sikkim · Culture & mountains",
     duration: "10 nights · 11 days",
     description:
       "A considered passage through monasteries, mountain roads and the living cultures of the eastern Himalaya.",
-    image: "/images/sikkim.jpg",
+    image: "/images/sikkim-himalaya.webp",
     imageAlt: "A Himalayan valley in Sikkim with prayer flags in the foreground",
   },
   {
+    slug: "north-east-wildlife-tour",
     title: "North East Wildlife",
     region: "Northeast India · Wildlife",
     duration: "8 nights · 9 days",
     description:
       "Slow, observant days in some of India’s richest habitats, guided by the rhythms of the forest.",
-    image: "/images/wildlife.jpg",
+    image: "/images/assam-rhino.webp",
     imageAlt: "An Indian rhinoceros walking through dense green forest",
   },
 ];
-
-const travelStyles = [
-  ["01", "Wildlife & nature", "Forests, wetlands and encounters that unfold at nature’s pace."],
-  ["02", "Tribal & cultural", "Thoughtful journeys shaped by context, respect and local voices."],
-  ["03", "Textiles & craft", "Meet traditions through the hands and places that keep them alive."],
-  ["04", "Buddhist & spiritual", "Ancient sites, living practice and space for quiet reflection."],
-  ["05", "Adventure & trekking", "Immersive routes for travellers who want to go further."],
-  ["06", "Tailor-made travel", "A private journey composed around your pace and curiosity."],
-] as const;
 
 const fieldNotes = [
   {
@@ -74,15 +72,18 @@ function Arrow() {
 
 function JourneyCard({ journey }: { journey: Journey }) {
   return (
-    <article className={`journey-card ${journey.className ?? ""}`}>
-      <a className="journey-card__image" href="#plan" aria-label={`Plan the ${journey.title} journey`}>
+    <article className="journey-card">
+      <Link className="journey-card__image" href={`/tours/${journey.slug}`} aria-label={`View the ${journey.title} journey`}>
         <Image
           src={journey.image}
           alt={journey.imageAlt}
           fill
+          unoptimized
+          loading="lazy"
+          decoding="async"
           sizes="(max-width: 720px) 88vw, (max-width: 1100px) 45vw, 31vw"
         />
-      </a>
+      </Link>
       <div className="journey-card__body">
         <div className="journey-card__meta">
           <span>{journey.region}</span>
@@ -90,9 +91,9 @@ function JourneyCard({ journey }: { journey: Journey }) {
         </div>
         <h3>{journey.title}</h3>
         <p>{journey.description}</p>
-        <a className="text-link" href="#plan">
+        <Link className="text-link" href={`/tours/${journey.slug}`}>
           View journey <Arrow />
-        </a>
+        </Link>
       </div>
     </article>
   );
@@ -103,44 +104,16 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
 
-      <header className="site-header">
-        <div className="shell header-inner">
-          <a className="wordmark" href="#top" aria-label="Eastern Risen home">
-            <span className="wordmark__name">Eastern Risen</span>
-            <span className="wordmark__place">Odisha · India</span>
-          </a>
-
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <a href="#journeys">Journeys</a>
-            <a href="#odisha">Odisha</a>
-            <a href="#travel-styles">Travel styles</a>
-            <a href="#about">Our approach</a>
-          </nav>
-
-          <a className="button button--header" href="#plan">Plan a journey</a>
-
-          <details className="mobile-nav">
-            <summary aria-label="Open navigation">
-              <span className="menu-lines" aria-hidden="true" />
-            </summary>
-            <div className="mobile-nav__panel">
-              <a href="#journeys">Journeys</a>
-              <a href="#odisha">Odisha</a>
-              <a href="#travel-styles">Travel styles</a>
-              <a href="#about">Our approach</a>
-              <a className="button" href="#plan">Plan a journey</a>
-            </div>
-          </details>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <Image
             className="hero__image"
-            src="/images/hero-odisha-dawn.png"
+            src="/images/hero-odisha-dawn-v2.webp"
             alt="A quiet river winding through forested hills in Odisha at dawn"
             fill
+            unoptimized
             priority
             sizes="100vw"
           />
@@ -152,7 +125,7 @@ export default function Home() {
               Travel shaped by local knowledge, uncommon routes and the kind of personal care that lets you be fully present.
             </p>
             <div className="hero__actions">
-              <a className="button" href="#journeys">Explore journeys</a>
+              <Link className="button" href="/tours">Explore journeys</Link>
               <a className="button button--ghost" href="#plan">Plan a private tour</a>
             </div>
           </div>
@@ -193,7 +166,7 @@ export default function Home() {
             {journeys.map((journey) => <JourneyCard key={journey.title} journey={journey} />)}
           </div>
           <div className="shell section-action">
-            <a className="text-link text-link--large" href="#plan">Discover all journeys <Arrow /></a>
+            <Link className="text-link text-link--large" href="/tours">Discover all journeys <Arrow /></Link>
           </div>
         </section>
 
@@ -201,9 +174,12 @@ export default function Home() {
           <div className="shell odisha__grid">
             <div className="odisha__visual">
               <Image
-                src="/images/odisha-golden-triangle.jpg"
+                src="/images/odisha-temple.webp"
                 alt="The carved stone towers of an Odisha temple complex"
                 fill
+                unoptimized
+                loading="lazy"
+                decoding="async"
                 sizes="(max-width: 800px) 100vw, 54vw"
               />
               <span className="image-note">Temple country · Coastal light · Living craft</span>
@@ -217,7 +193,7 @@ export default function Home() {
               <p>
                 Odisha is more than a destination in our collection—it is the perspective from which we travel. Here, depth comes from knowing which road to take, when to pause and how to enter a place with respect.
               </p>
-              <a className="text-link text-link--light" href="#plan">Explore Odisha <Arrow /></a>
+              <Link className="text-link text-link--light" href="/destinations#odisha">Explore Odisha <Arrow /></Link>
             </div>
           </div>
         </section>
@@ -229,13 +205,13 @@ export default function Home() {
             <p className="lead">Start with what draws you in. We’ll shape the route around it.</p>
           </div>
           <div className="styles__list">
-            {travelStyles.map(([number, title, description]) => (
-              <a href="#plan" className="style-row" key={number}>
-                <span className="style-row__number">{number}</span>
-                <span className="style-row__title">{title}</span>
-                <span className="style-row__description">{description}</span>
+            {travelStyleDefinitions.map((style) => (
+              <Link href={`/travel-styles#${style.id}`} className="style-row" key={style.id}>
+                <span className="style-row__number">{style.number}</span>
+                <span className="style-row__title">{style.name}</span>
+                <span className="style-row__description">{style.description}</span>
                 <Arrow />
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -244,9 +220,12 @@ export default function Home() {
           <div className="shell approach__grid">
             <div className="approach__image">
               <Image
-                src="/images/sikkim.jpg"
-                alt="Prayer flags overlooking the hills of Sikkim"
+                src="/images/journey-planning.webp"
+                alt="Hands planning a journey together over a route map"
                 fill
+                unoptimized
+                loading="lazy"
+                decoding="async"
                 sizes="(max-width: 800px) 100vw, 42vw"
               />
             </div>
@@ -261,6 +240,7 @@ export default function Home() {
                 <div><span>02</span><p><strong>Go with context.</strong> Good guiding turns a sight into a story you understand.</p></div>
                 <div><span>03</span><p><strong>Travel with respect.</strong> Care for communities, cultures and habitats is part of the plan.</p></div>
               </div>
+              <Link className="text-link text-link--large approach__link" href="/about">More about Eastern Risen <Arrow /></Link>
             </div>
           </div>
         </section>
@@ -282,37 +262,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="planning section" id="plan" aria-labelledby="planning-title">
-          <div className="shell planning__inner">
-            <p className="eyebrow eyebrow--warm">Your journey, thoughtfully made</p>
-            <h2 id="planning-title">Where would you like to go next?</h2>
-            <p>
-              Tell us what has caught your imagination. We’ll help turn it into a route that feels entirely your own.
-            </p>
-            <a className="button button--light" href="mailto:info@easternrisen.com?subject=Planning%20a%20journey%20with%20Eastern%20Risen">
-              Start a conversation <span aria-hidden="true">↗</span>
-            </a>
-            <small>The full journey-planning form will arrive with our connected backend.</small>
-          </div>
-        </section>
+        <PlanningCta />
       </main>
-
-      <footer className="site-footer">
-        <div className="shell footer__top">
-          <div>
-            <a className="wordmark wordmark--footer" href="#top"><span className="wordmark__name">Eastern Risen</span><span className="wordmark__place">Make your own travel</span></a>
-            <p>Specialist journeys rooted in Odisha, reaching across India and its neighbouring lands.</p>
-          </div>
-          <div className="footer__links">
-            <div><strong>Explore</strong><a href="#journeys">Journeys</a><a href="#odisha">Odisha</a><a href="#travel-styles">Travel styles</a></div>
-            <div><strong>Eastern Risen</strong><a href="#about">Our approach</a><a href="#notes-title">Field notes</a><a href="#plan">Plan a journey</a></div>
-          </div>
-        </div>
-        <div className="shell footer__bottom">
-          <span>© {new Date().getFullYear()} Eastern Risen Expedition Pvt. Ltd.</span>
-          <span>Bhubaneswar · Odisha · India</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
