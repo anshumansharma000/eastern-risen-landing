@@ -107,29 +107,16 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
 .intro h2 { font-size: clamp(50px, 6vw, 84px); }
 .intro__copy { max-width: 610px; padding-top: 24px; color: var(--grey); }
 .intro__copy .lead { margin: 0 0 32px; color: var(--ink); }
-.principles { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 50px; }
-.principles .principle-card { position: relative; display: flex; min-height: 286px; overflow: hidden; flex-direction: column; justify-content: flex-end; padding: 28px 30px; border-radius: 18px; background: rgba(255,255,255,.78); box-shadow: 0 12px 34px rgba(73,53,38,.06); }
-.principles strong { font-family: var(--display); font-size: 25px; font-weight: 500; }
-.principles span { margin-top: 4px; color: var(--grey); font-size: 12px; }
-.principle-card__art { position: absolute; inset: 0 0 auto; height: 176px; overflow: hidden; background: linear-gradient(145deg, #f8e9da, #eed9c4); }
-.principle-card__art::after { position: absolute; inset: auto 0 0; height: 58px; background: linear-gradient(transparent, rgba(255,255,255,.78)); content: ""; }
-.principle-card__art i { position: absolute; display: block; }
-.principle-card__art--contours { background-color: #f1dfcd; background-image: repeating-radial-gradient(ellipse at 18% 78%, transparent 0 17px, rgba(185,80,22,.26) 18px 19px, transparent 20px 32px); }
-.principle-card__art--contours i:first-child { width: 86px; height: 86px; right: 18%; top: 20px; border: 1px solid rgba(37,34,31,.18); border-radius: 50%; }
-.principle-card__art--contours i:nth-child(2) { width: 8px; height: 8px; right: calc(18% + 39px); top: 59px; border-radius: 50%; background: var(--rust); box-shadow: 0 0 0 8px rgba(185,80,22,.12); }
-.principle-card__art--contours i:last-child { width: 44px; height: 1px; right: 10%; top: 63px; background: rgba(37,34,31,.32); transform: rotate(-22deg); transform-origin: left; }
-.principle-card__art--route { background: linear-gradient(155deg, #244e63, #173846); }
-.principle-card__art--route::before { position: absolute; width: 72%; height: 94px; left: 14%; top: 34px; border: 2px dashed rgba(255,255,255,.46); border-width: 2px 0 0 2px; border-radius: 70% 0 0; transform: rotate(-7deg); content: ""; }
-.principle-card__art--route i { width: 13px; height: 13px; border: 3px solid #fff8ef; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 7px rgba(255,255,255,.1); }
-.principle-card__art--route i:first-child { left: 13%; bottom: 31px; }
-.principle-card__art--route i:nth-child(2) { left: 52%; top: 43px; }
-.principle-card__art--route i:last-child { right: 12%; bottom: 50px; }
-.principle-card__art--horizon { background: linear-gradient(#eaa26c 0%, #f1c59c 50%, #e8d4bd 51%, #d9c2a8 100%); }
-.principle-card__art--horizon::before { position: absolute; width: 82px; height: 82px; left: calc(50% - 41px); top: 29px; border-radius: 50%; background: #fff4d8; box-shadow: 0 0 0 16px rgba(255,244,216,.17); content: ""; }
-.principle-card__art--horizon i { left: -8%; width: 116%; height: 62px; border-radius: 50% 50% 0 0; background: #a75a2f; }
-.principle-card__art--horizon i:first-child { bottom: -16px; opacity: .86; }
-.principle-card__art--horizon i:nth-child(2) { bottom: -34px; background: #704737; transform: translateX(-17%); }
-.principle-card__art--horizon i:last-child { bottom: -49px; background: #344d4a; transform: translateX(18%); }
+.principles-feature { grid-column: 1 / -1; margin-top: 50px; }
+.principles-feature__image { position: relative; min-height: clamp(430px, 45vw, 610px); overflow: hidden; border-radius: 24px; background: var(--cream); }
+.principles-feature__image::after { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,18,16,.48), transparent 48%); content: ""; }
+.principles-feature__image img { object-position: center 56%; }
+.principles-feature__image > span { position: absolute; z-index: 2; left: 27px; bottom: 96px; color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.principles { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; margin: -70px 24px 0; border-radius: 18px; background: rgba(37,34,31,.14); box-shadow: 0 24px 58px rgba(73,53,38,.14); }
+.principles .principle-card { display: flex; min-height: 190px; justify-content: flex-end; padding: 28px 30px; background: rgba(255,249,242,.97); flex-direction: column; backdrop-filter: blur(12px); }
+.principles strong { font-family: var(--display); font-size: clamp(26px, 2.3vw, 35px); font-weight: 500; line-height: 1.1; }
+.principles .principle-card > span:not(.principle-card__number) { margin-top: 7px; color: var(--grey); font-size: 11px; }
+.principles .principle-card__number { margin: 0 0 auto; color: var(--rust); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
 
 .journeys { background: #f7efe5; }
 .section-heading { display: flex; justify-content: space-between; gap: 60px; align-items: end; margin-bottom: 60px; }
@@ -686,8 +673,12 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
   h2 { font-size: 47px; }
   .intro h2 { font-size: 52px; }
   .intro__copy .lead { font-size: 26px; }
-  .principles { grid-template-columns: 1fr; margin-top: 18px; }
-  .principles .principle-card { min-height: 265px; padding: 23px 24px; }
+  .principles-feature { margin-top: 18px; }
+  .principles-feature__image { min-height: 430px; border-radius: 20px; }
+  .principles-feature__image > span { left: 18px; bottom: 70px; max-width: 75%; }
+  .principles { grid-template-columns: 1fr; gap: 1px; margin: -48px 12px 0; border-radius: 16px; }
+  .principles .principle-card { min-height: 154px; padding: 22px 24px; }
+  .principles .principle-card__number { margin-bottom: 22px; }
   .section-heading { align-items: start; flex-direction: column; gap: 22px; margin-bottom: 38px; }
   .section-heading h2 { font-size: 49px; }
   .journey-grid { display: flex; width: 100%; overflow-x: auto; padding-inline: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; }

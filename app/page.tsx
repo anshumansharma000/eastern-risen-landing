@@ -134,18 +134,32 @@ export default function Home() {
               From Odisha’s temple towns and wild coast to the eastern Himalaya and neighbouring lands, every route is considered with curiosity, context and care.
             </p>
           </div>
-          <div className="principles" aria-label="Our travel principles">
-            <div className="principle-card">
-              <div className="principle-card__art principle-card__art--contours" aria-hidden="true"><i /><i /><i /></div>
-              <strong>Local depth</strong><span>Knowledge grounded in place</span>
+          <div className="principles-feature">
+            <div className="principles-feature__image">
+              <Image
+                src="/images/kerala-backwaters.webp"
+                alt="A houseboat moving slowly through Kerala's palm-lined backwaters"
+                fill
+                unoptimized
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 720px) 100vw, 1360px"
+              />
+              <span>Travel with time to notice · Kerala backwaters</span>
             </div>
-            <div className="principle-card">
-              <div className="principle-card__art principle-card__art--route" aria-hidden="true"><i /><i /><i /></div>
-              <strong>Your pace</strong><span>Private and small-group travel</span>
-            </div>
-            <div className="principle-card">
-              <div className="principle-card__art principle-card__art--horizon" aria-hidden="true"><i /><i /><i /></div>
-              <strong>Personal care</strong><span>A human hand throughout</span>
+            <div className="principles" aria-label="Our travel principles">
+              <div className="principle-card">
+                <span className="principle-card__number">01</span>
+                <strong>Local depth</strong><span>Knowledge grounded in place</span>
+              </div>
+              <div className="principle-card">
+                <span className="principle-card__number">02</span>
+                <strong>Your pace</strong><span>Private and small-group travel</span>
+              </div>
+              <div className="principle-card">
+                <span className="principle-card__number">03</span>
+                <strong>Personal care</strong><span>A human hand throughout</span>
+              </div>
             </div>
           </div>
         </section>
