@@ -10,13 +10,7 @@ export const metadata: Metadata = {
   description: "Explore Eastern Risen journeys across India, Odisha, the eastern Himalaya and neighbouring lands.",
 };
 
-export default async function ToursPage({ searchParams }: { searchParams: Promise<{ region?: string | string[]; style?: string | string[] }> }) {
-  const resolvedSearchParams = await searchParams;
-  const regionParam = resolvedSearchParams.region;
-  const styleParam = resolvedSearchParams.style;
-  const initialRegion = Array.isArray(regionParam) ? regionParam[0] : regionParam;
-  const initialStyle = Array.isArray(styleParam) ? styleParam[0] : styleParam;
-
+export default function ToursPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -37,7 +31,7 @@ export default async function ToursPage({ searchParams }: { searchParams: Promis
             <div><strong>{tourStyles.length}</strong><span>Ways to travel</span></div>
           </div>
         </section>
-        <TourExplorer tours={tours} regions={tourRegions} styles={tourStyles} initialRegion={initialRegion} initialStyle={initialStyle} />
+        <TourExplorer tours={tours} regions={tourRegions} styles={tourStyles} />
         <PlanningCta />
       </main>
       <SiteFooter />

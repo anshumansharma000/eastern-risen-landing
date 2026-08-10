@@ -21,6 +21,18 @@ export default function PhotoCreditsPage() {
             <p>Every journey has its own cover. Sourced photographs retain their creator and licence details; original generated scenes are identified separately.</p>
           </div>
           <ol className="credits-list">
+            <li className="credit-item">
+              <strong>Homepage · Local depth</strong>
+              <span>Konark Sun Temple wheel · Ankur Panchbudhe · CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Konark_Sun_Temple_wheel.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage · Your pace</strong>
+              <span>Hikers in Himachal Pradesh · Jay Johnson · Pexels License · <a href="https://www.pexels.com/photo/hikers-exploring-scenic-himalayas-in-india-35601221/" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage · Personal care</strong>
+              <span>Original generated hospitality scene created for Eastern Risen.</span>
+            </li>
             {tourImages.map((entry) => (
               <li className="credit-item" key={entry.index}>
                 <strong>{entry.tour}</strong>

@@ -42,6 +42,14 @@ function cleanLegacyCopy(value: string) {
     .replace(/\bafter noon\b/gi, "afternoon")
     .replace(/\bbrakish\b/gi, "brackish")
     .replace(/\bIrrawady\b/gi, "Irrawaddy")
+    .replace(/\bHidus\b/gi, "Hindus")
+    .replace(/\bGujrat\b/gi, "Gujarat")
+    .replace(/\bSrilanka\b/gi, "Sri Lanka")
+    .replace(/\bGangtak\b/gi, "Gangtok")
+    .replace(/\bBhitarkankika\b/gi, "Bhitarkanika")
+    .replace(/\bBandhabgarh\b/gi, "Bandhavgarh")
+    .replace(/\bKathmadu\b/gi, "Kathmandu")
+    .replace(/\bSringar\b/gi, "Srinagar")
     .replace(/\s+([,.])/g, "$1")
     .trim();
 }

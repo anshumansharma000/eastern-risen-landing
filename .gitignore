@@ -12,15 +12,23 @@
 
 # testing
 /coverage
+/.nyc_output/
 
 # next.js
 /.next/
-/.vinext/
 /out/
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.bak
+*.swp
+*~
 
 # debug
 npm-debug.log*
@@ -30,13 +38,51 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
-# vercel
+# deployment and local platform state
 .vercel
+/.wrangler/
+/.dev.vars
+/.dev.vars.*
 
 # typescript
 next-env.d.ts
+*.tsbuildinfo
+
+# build output and temporary work
 /dist/
-/.wrangler/
 /outputs/
 /work/
+/.cache/
+/tmp/
+/temp/
+
+# IDE and local tooling
+/.idea/
+/.vscode/
+/.fleet/
+
+# internal planning, research, prompts, and source-processing artifacts
+/PRODUCT.md
+/MEDIA_SOURCING.md
+/research/
+/scripts/
+*.py[cod]
+
+# local content-source archive; runtime data stays versioned
+/content-bank/curated-assets/
+/content-bank/itineraries/
+/content-bank/legacy-assets/
+/content-bank/legacy-html/
+/content-bank/pages/
+/content-bank/tour-pages/
+/content-bank/DATA_QUALITY.md
+/content-bank/README.md
+/content-bank/REDESIGN_HANDOFF.md
+/content-bank/manifest.json
+/content-bank/data/tour_catalog.csv
+/content-bank/data/tour_occurrences.json
+/content-bank/data/tour_review_queue.json
+
+/.openai

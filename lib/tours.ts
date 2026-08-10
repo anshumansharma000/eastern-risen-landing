@@ -41,15 +41,16 @@ function slugify(value: string) {
 function inferRegion(tour: RawTour) {
   const text = `${tour.name} ${tour.destination_or_route} ${tour.category_pages.join(" ")}`.toLowerCase();
 
+  if (text.includes("central exotic") || text.includes("central india")) return "Central India";
   if (text.includes("bhutan")) return "Bhutan";
+  if (text.includes("tibet") || text.includes("lhasa")) return "Tibet";
   if (text.includes("nepal") || text.includes("kathmandu")) return "Nepal";
   if (text.includes("sri lanka") || text.includes("srilanka")) return "Sri Lanka";
-  if (text.includes("tibet")) return "Tibet";
   if (text.includes("malaysia") || text.includes("singapore") || text.includes("thiland") || text.includes("thailand")) return "Southeast Asia";
   if (text.includes("odisha") || text.includes("orissa") || text.includes("bhubaneswar") || text.includes("puri") || text.includes("chilika")) return "Odisha";
   if (text.includes("sikkim") || text.includes("gangtok") || text.includes("gangtak") || text.includes("arunachal") || text.includes("northeast") || text.includes("north east") || text.includes("hornbill") || text.includes("guwahati")) return "Northeast India";
   if (text.includes("south india") || text.includes("kerala") || text.includes("cochin")) return "South India";
-  if (text.includes("central india") || text.includes("bandhavgarh") || text.includes("kanha")) return "Central India";
+  if (text.includes("bandhavgarh") || text.includes("kanha")) return "Central India";
   if (text.includes("west india") || text.includes("gujrat") || text.includes("gujarat")) return "West India";
   if (text.includes("north india") || text.includes("delhi") || text.includes("himachal") || text.includes("amarnath") || text.includes("ladakh")) return "North India";
   return "India";
@@ -85,7 +86,17 @@ function sentenceCase(value: string) {
     .replace(/\s*[-–]\s*(X{0,2}I{1,3}|IV|V|VI{1,3}|IX|X)$/i, (_, numeral: string) => ` ${numeral.toUpperCase()}`)
     .replace(/\bThiland\b/g, "Thailand")
     .replace(/\bGujrat\b/g, "Gujarat")
+    .replace(/\bSrilanka\b/g, "Sri Lanka")
+    .replace(/\bBudhist\b/g, "Buddhist")
+    .replace(/\bGlipms\b/g, "Glimpses")
+    .replace(/\bDarsha\b/g, "Darshan")
+    .replace(/\bAnd\b/g, "and")
     .replace(/\bN\.p\b/gi, "N.P.");
+}
+
+function displayDuration(value: string) {
+  const match = value.match(/(\d+)\s*nights?\s*\/\s*(\d+)\s*days?/i);
+  return match ? `${Number(match[1])} nights / ${Number(match[2])} days` : value.trim();
 }
 
 function createSummary(region: string, style: string, route: string) {
@@ -127,7 +138,7 @@ const mappedTours: Tour[] = (catalog as RawTour[]).map((rawTour, index) => {
   return {
     slug,
     title,
-    duration: rawTour.duration.replace(/\s*Program$/i, "").replace(/\s*\/\s*/g, " / ").trim(),
+    duration: displayDuration(rawTour.duration.replace(/\s*Program$/i, "")),
     durationDays: parseDurationDays(rawTour.duration),
     route: rawTour.destination_or_route,
     region,

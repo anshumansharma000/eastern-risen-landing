@@ -134,32 +134,24 @@ export default function Home() {
               From Odisha’s temple towns and wild coast to the eastern Himalaya and neighbouring lands, every route is considered with curiosity, context and care.
             </p>
           </div>
-          <div className="principles-feature">
-            <div className="principles-feature__image">
-              <Image
-                src="/images/kerala-backwaters.webp"
-                alt="A houseboat moving slowly through Kerala's palm-lined backwaters"
-                fill
-                unoptimized
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 720px) 100vw, 1360px"
-              />
-              <span>Travel with time to notice · Kerala backwaters</span>
+          <div className="principles principles--photographic" aria-label="Our travel principles">
+            <div className="principle-card">
+              <Image src="/images/principle-local-depth.jpg" alt="The intricately carved stone wheel of the Konark Sun Temple in Odisha" fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 33vw" />
+              <div className="principle-card__shade" />
+              <span className="principle-card__number">01</span>
+              <div className="principle-card__content"><strong>Local depth</strong><span>Knowledge grounded in place</span></div>
             </div>
-            <div className="principles" aria-label="Our travel principles">
-              <div className="principle-card">
-                <span className="principle-card__number">01</span>
-                <strong>Local depth</strong><span>Knowledge grounded in place</span>
-              </div>
-              <div className="principle-card">
-                <span className="principle-card__number">02</span>
-                <strong>Your pace</strong><span>Private and small-group travel</span>
-              </div>
-              <div className="principle-card">
-                <span className="principle-card__number">03</span>
-                <strong>Personal care</strong><span>A human hand throughout</span>
-              </div>
+            <div className="principle-card">
+              <Image src="/images/principle-your-pace.jpg" alt="A group of travellers trekking through the mountains of Himachal Pradesh" fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 33vw" />
+              <div className="principle-card__shade" />
+              <span className="principle-card__number">02</span>
+              <div className="principle-card__content"><strong>Your pace</strong><span>Private and small-group travel</span></div>
+            </div>
+            <div className="principle-card">
+              <Image src="/images/principle-personal-care.jpg" alt="Hotel staff in traditional Indian dress welcoming a traveller with namaste" fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 33vw" />
+              <div className="principle-card__shade" />
+              <span className="principle-card__number">03</span>
+              <div className="principle-card__content"><strong>Personal care</strong><span>A human hand throughout</span></div>
             </div>
           </div>
         </section>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import company from "@/content-bank/data/company.json";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ContactActions } from "./ContactActions";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -10,14 +11,9 @@ export const metadata: Metadata = {
 };
 
 const primaryEmail = company.emails[0];
-const primaryPhone = "+91 97775 64596";
-const secondaryPhone = "+91 97775 64695";
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string | string[] }> }) {
-  const serviceParam = (await searchParams).service;
-  const service = Array.isArray(serviceParam) ? serviceParam[0] : serviceParam;
-  const subject = encodeURIComponent(service ? `Enquiry about ${service}` : "Planning a journey with Eastern Risen");
-
+export default function ContactPage() {
+  const subject = encodeURIComponent("Planning a journey with Eastern Risen");
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -31,27 +27,10 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           <div className="contact-hero__copy">
             <p className="lead">You do not need a finished itinerary to get in touch.</p>
             <p>Share a place, an interest or simply the kind of journey you have in mind. We can help turn it into a route and identify the practical support it needs.</p>
-            {service ? <p className="contact-context">Enquiring about <strong>{service}</strong></p> : null}
           </div>
         </section>
 
-        <section className="contact-actions shell" aria-label="Contact Eastern Risen">
-          <article className="contact-action contact-action--primary">
-            <p className="eyebrow eyebrow--warm">Email us</p>
-            <h2>Write when it suits you.</h2>
-            <p>Include your preferred destinations, approximate dates, group size and anything that matters to how you travel.</p>
-            <a className="button button--light" href={`mailto:${primaryEmail}?subject=${subject}`}>{primaryEmail} <span aria-hidden="true">↗</span></a>
-          </article>
-          <article className="contact-action">
-            <p className="eyebrow">Call us</p>
-            <h2>Prefer to talk?</h2>
-            <p>Speak with the Eastern Risen team in India about a journey or travel service.</p>
-            <div className="contact-phone-list">
-              <a href="tel:+919777564596">{primaryPhone}</a>
-              <a href="tel:+919777564695">{secondaryPhone}</a>
-            </div>
-          </article>
-        </section>
+        <ContactActions primaryEmail={primaryEmail} />
 
         <section className="contact-prep section shell" aria-labelledby="contact-prep-title">
           <div className="contact-prep__heading">

@@ -56,8 +56,8 @@ export default function AboutPage() {
 
         <section className="founder-story shell" aria-labelledby="founder-title">
           <div className="founder-story__image">
-            <Image src="/images/journey-planning.webp" alt="Hands working together over a map while planning a thoughtful journey" fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 840px) 100vw, 48vw" />
-            <span>Experience shaped on the road</span>
+            <Image src="/images/founder-bijan-muduli.jpg" alt="Bijan Kumar Muduli, founder of Eastern Risen" fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 840px) 100vw, 48vw" />
+            <span>Bijan Kumar Muduli · Founder</span>
           </div>
           <div className="founder-story__content">
             <p className="eyebrow eyebrow--warm">The founder</p>

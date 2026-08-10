@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState, useSyncExternalStore, type SetStateAction } from "react";
 import { TourCard } from "@/components/TourCard";
 import type { Tour } from "@/lib/tours";
 
@@ -12,6 +12,10 @@ const durationOptions: { label: string; value: DurationFilter }[] = [
   { label: "6–10 days", value: "6-10" },
   { label: "11+ days", value: "11+" },
 ];
+
+const subscribeToLocation = () => () => {};
+const getLocationSearch = () => window.location.search;
+const getServerSearch = () => "";
 
 const sectionDefinitions = [
   {
@@ -96,24 +100,36 @@ export function TourExplorer({
   tours,
   regions,
   styles,
-  initialRegion,
-  initialStyle,
 }: {
   tours: Tour[];
   regions: string[];
   styles: string[];
-  initialRegion?: string;
-  initialStyle?: string;
 }) {
+  const locationSearch = useSyncExternalStore(subscribeToLocation, getLocationSearch, getServerSearch);
+  const query = new URLSearchParams(locationSearch);
+  const queryRegion = query.get("region");
+  const queryStyle = query.get("style");
+  const defaultRegions = queryRegion && regions.includes(queryRegion) ? [queryRegion] : [];
+  const defaultStyles = queryStyle && styles.includes(queryStyle) ? [queryStyle] : [];
   const [search, setSearch] = useState("");
-  const [selectedRegions, setSelectedRegions] = useState<string[]>(initialRegion && regions.includes(initialRegion) ? [initialRegion] : []);
-  const [selectedStyles, setSelectedStyles] = useState<string[]>(initialStyle && styles.includes(initialStyle) ? [initialStyle] : []);
+  const [regionSelection, setRegionSelection] = useState<string[] | null>(null);
+  const [styleSelection, setStyleSelection] = useState<string[] | null>(null);
   const [selectedDurations, setSelectedDurations] = useState<string[]>([]);
   const [sort, setSort] = useState<SortOption>("curated");
   const [visibleCount, setVisibleCount] = useState(12);
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
+  const selectedRegions = regionSelection ?? defaultRegions;
+  const selectedStyles = styleSelection ?? defaultStyles;
 
-  const filteredTours = useMemo(() => {
+  function setSelectedRegions(action: SetStateAction<string[]>) {
+    setRegionSelection((current) => typeof action === "function" ? action(current ?? defaultRegions) : action);
+  }
+
+  function setSelectedStyles(action: SetStateAction<string[]>) {
+    setStyleSelection((current) => typeof action === "function" ? action(current ?? defaultStyles) : action);
+  }
+
+  const filteredTours = (() => {
     const query = search.trim().toLowerCase();
     const result = tours.filter((tour) => {
       const matchesSearch = !query || `${tour.title} ${tour.route} ${tour.region} ${tour.travelStyle}`.toLowerCase().includes(query);
@@ -124,14 +140,14 @@ export function TourExplorer({
     });
 
     return sortTours(result, sort);
-  }, [search, selectedDurations, selectedRegions, selectedStyles, sort, tours]);
+  })();
 
-  const browseSections = useMemo(() => sectionDefinitions
+  const browseSections = sectionDefinitions
     .map((section) => ({
       ...section,
       tours: sortTours(tours.filter((tour) => (section.regions as readonly string[]).includes(tour.region)), sort),
     }))
-    .filter((section) => section.tours.length > 0), [sort, tours]);
+    .filter((section) => section.tours.length > 0);
 
   const activeFilters = [...selectedRegions, ...selectedStyles, ...selectedDurations];
   const isResultMode = search.trim().length > 0 || activeFilters.length > 0;

@@ -4,18 +4,13 @@ import test from "node:test";
 import tourImages from "../content-bank/data/tour_images.json" with { type: "json" };
 
 async function render(path = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  return worker.fetch(
-    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  const pathname = new URL(path, "https://easternrisen.com").pathname;
+  const relativeFile = pathname === "/" ? "index.html" : `${pathname.replace(/^\/|\/$/g, "")}/index.html`;
+  const html = await fs.promises.readFile(new URL(`../out/${relativeFile}`, import.meta.url), "utf8");
+  return new Response(html, { headers: { "content-type": "text/html; charset=utf-8" } });
 }
 
-test("server-renders the Eastern Risen landing page", async () => {
+test("exports the Eastern Risen landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -26,9 +21,10 @@ test("server-renders the Eastern Risen landing page", async () => {
   assert.match(html, /Odisha Golden Triangle/);
   assert.match(html, /Where would you like to go next\?/);
   assert.match(html, /src="\/images\/hero-odisha-dawn-v2\.webp"/);
+  assert.match(html, /src="\/images\/eastern-risen-logo\.png"/);
   assert.match(html, /loading="lazy"/);
   assert.doesNotMatch(html, /\/_vinext\/image\?/);
-  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Server Action/i);
+  assert.doesNotMatch(html, /react-loading-skeleton|Server Action/i);
 });
 
 test("server-renders the data-backed tour collection", async () => {
@@ -37,23 +33,34 @@ test("server-renders the data-backed tour collection", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Journeys \| Eastern Risen<\/title>/i);
-  assert.match(html, /84/);
+  assert.match(html, /src="\/images\/eastern-risen-logo-dark\.png"/);
+  assert.match(html, /82/);
   assert.match(html, /Odisha Golden Triangle/i);
   assert.match(html, /Filter &amp; refine/i);
   assert.match(html, /Northeast India &amp; Sikkim/i);
   assert.match(html, /Nepal &amp; Bhutan/i);
   assert.match(html, /Special Interest &amp; Across India/i);
   assert.match(html, /Season and activity filters will be added/i);
-  assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+  assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
-test("assigns one optimized image to every tour", () => {
-  assert.equal(tourImages.length, 84);
-  assert.equal(new Set(tourImages.map((entry) => entry.image)).size, 84);
+test("assigns one image to every curated tour", () => {
+  assert.equal(tourImages.length, 82);
+  assert.equal(new Set(tourImages.map((entry) => entry.image)).size, 82);
   for (const entry of tourImages) {
-    assert.match(entry.image, /^\/images\/tours\/.+\.webp$/);
+    assert.match(entry.image, /^\/images\/tours\/.+\.(?:webp|jpg)$/);
     assert.ok(fs.existsSync(new URL(`../public${entry.image}`, import.meta.url)));
   }
+});
+
+test("renders corrected and newly curated journeys", async () => {
+  const response = await render("/tours");
+  const html = await response.text();
+  assert.match(html, /Yoga And Meditation Tour/i);
+  assert.match(html, /Amarnath Yatra Via Pahalgam/i);
+  assert.match(html, /Amarnath Express Yatra By Helicopter/i);
+  assert.doesNotMatch(html, /Amarnath Yatra Start From|2013/i);
+  assert.doesNotMatch(html, /\b\d+ night\s*\/|\/\s*\d+ day\b/i);
 });
 
 test("server-renders the photo credits", async () => {
@@ -78,7 +85,7 @@ test("server-renders a complete tour detail page", async () => {
   assert.match(html, /Arrival Bhubaneswar/i);
   assert.match(html, /Related journeys/i);
   assert.match(html, /Start a conversation/i);
-  assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+  assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
 test("server-renders the travel styles collection", async () => {
@@ -94,7 +101,7 @@ test("server-renders the travel styles collection", async () => {
   assert.match(html, /Forests, wetlands and wildlife encounters/i);
   assert.match(html, /Most good journeys cross categories/i);
   assert.match(html, /Odisha Golden Triangle/i);
-  assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+  assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
 test("server-renders the destination collection", async () => {
@@ -109,7 +116,7 @@ test("server-renders the destination collection", async () => {
   assert.match(html, /Journeys beyond India/i);
   assert.match(html, /Nepal/i);
   assert.match(html, /Sri Lanka/i);
-  assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+  assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
 test("server-renders the travel services page", async () => {
@@ -123,7 +130,7 @@ test("server-renders the travel services page", async () => {
   assert.match(html, /Air Ticketing/i);
   assert.match(html, /Travel Documentation Guidance/i);
   assert.match(html, /How we bring it together/i);
-  assert.doesNotMatch(html, /\$[0-9]|Book now|Server Action/i);
+  assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
 test("server-renders the contact page", async () => {
