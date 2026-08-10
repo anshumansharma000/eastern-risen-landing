@@ -130,7 +130,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
             <h2>Interested in this journey?</h2>
             <p>Tell us what caught your attention. We’ll help refine the route around your time, pace and priorities.</p>
             <a className="button" href={`mailto:info@easternrisen.com?subject=${mailSubject}`}>Start a conversation <span aria-hidden="true">↗</span></a>
-            <small>No fixed departures or fabricated pricing—just a thoughtful planning conversation.</small>
+            <small>No fixed departures or made-up pricing. Just a thoughtful planning conversation.</small>
           </aside>
         </div>
 

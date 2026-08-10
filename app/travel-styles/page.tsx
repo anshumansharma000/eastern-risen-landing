@@ -9,7 +9,7 @@ import { travelStyleDefinitions } from "@/lib/travel-styles";
 
 export const metadata: Metadata = {
   title: "Travel Styles",
-  description: "Explore Eastern Risen journeys by interest—from wildlife and living culture to craft, spirituality and active exploration.",
+  description: "Explore Eastern Risen journeys by interest, from wildlife and living culture to craft, spirituality and active exploration.",
 };
 
 export default function TravelStylesPage() {
@@ -25,7 +25,7 @@ export default function TravelStylesPage() {
           </div>
           <div className="styles-hero__copy">
             <p className="lead">Begin with what draws you in. We’ll help shape the route around it.</p>
-            <p>A travel style is not a rigid category. It is a useful starting point—one that can lead toward a particular landscape, tradition or way of moving through a place.</p>
+            <p>A travel style is not a rigid category. Think of it as a starting point that can lead towards a particular landscape, tradition or way of moving through a place.</p>
           </div>
           <div className="styles-hero__image">
             <Image src="/images/hero-odisha-dawn-v2.webp" alt="A river winding through the forested hills of Odisha at dawn" fill unoptimized priority sizes="(max-width: 720px) 100vw, 1360px" />

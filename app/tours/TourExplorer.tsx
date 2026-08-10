@@ -22,7 +22,7 @@ const sectionDefinitions = [
     id: "odisha",
     eyebrow: "Our home ground",
     title: "Odisha",
-    description: "Temple towns, forested hills, coastal wetlands and living craft traditions—explored with the perspective that comes from knowing a place closely.",
+    description: "Temple towns, forested hills, coastal wetlands and living craft traditions, explored with the perspective that comes from knowing a place closely.",
     regions: ["Odisha"],
     previewCount: 6,
   },

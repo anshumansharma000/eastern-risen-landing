@@ -49,7 +49,7 @@ export default function DestinationsPage() {
           </div>
           <div className="destinations-hero__copy">
             <p className="lead">A destination is more than a list of sights. It is a landscape of relationships, histories and everyday life.</p>
-            <p>Our journeys begin with local context and a carefully considered route—across India and into neighbouring lands we have travelled for years.</p>
+            <p>Our journeys begin with local context and a carefully considered route. They reach across India and into neighbouring lands we have travelled through for years.</p>
           </div>
           <div className="destinations-hero__image">
             <Image src="/images/sikkim-himalaya.webp" alt="Prayer flags looking across the layered hills of Sikkim" fill unoptimized priority sizes="(max-width: 720px) 100vw, 1360px" />

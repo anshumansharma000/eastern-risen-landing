@@ -13,7 +13,7 @@ export const odishaDestination: DestinationDefinition = {
   region: "Odisha",
   name: "Odisha",
   eyebrow: "Our home ground",
-  description: "Temple cities, Buddhist hills, forest communities, craft villages and the vast wetlands of Chilika—known through years of travelling close to home.",
+  description: "Temple cities, Buddhist hills, forest communities, craft villages and the vast wetlands of Chilika, places we know through years of travelling close to home.",
   image: "/images/odisha-temple.webp",
   imageAlt: "Carved Odisha temple architecture in warm evening light",
 };

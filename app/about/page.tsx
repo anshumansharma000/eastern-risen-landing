@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const principles = [
-  { number: "01", title: "Listen first", text: "A journey begins with the traveller—their interests, pace, comfort and reasons for going." },
+  { number: "01", title: "Listen first", text: "A journey begins with the traveller: their interests, pace, comfort and reasons for going." },
   { number: "02", title: "Know the ground", text: "Strong routes come from regional knowledge and an understanding of how places connect." },
   { number: "03", title: "Take care", text: "Transport, timing and practical support should work quietly, so travellers can remain present." },
   { number: "04", title: "Travel respectfully", text: "Communities, sacred places and wildlife habitats deserve context, humility and thoughtful behaviour." },
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="about-story__copy">
             <p className="lead">Eastern Risen began with a broad understanding of travel: tours, transport, tickets and the practical work required to bring them together.</p>
             <p>That foundation still matters. It means we see an itinerary as more than a sequence of sights. A memorable journey depends on timing, context, good people on the ground and the confidence that someone is paying attention.</p>
-            <p>Over time, the company’s character has become clearest in specialist travel—Odisha and eastern India, wildlife, culture, craft, spiritual routes and journeys that sit beyond standard tourist circuits.</p>
+            <p>Over time, the company has found its character in specialist travel: Odisha and eastern India, wildlife, culture, craft, spiritual routes and journeys beyond the usual tourist circuits.</p>
           </div>
         </section>
 
@@ -84,7 +84,7 @@ export default function AboutPage() {
           <div className="about-odisha__content">
             <p className="eyebrow">A local point of view</p>
             <h2 id="about-odisha-title">Odisha is our signature, not our limit.</h2>
-            <p className="lead">Knowing one place deeply teaches you how to enter every other place—with patience, context and respect.</p>
+            <p className="lead">Knowing one place deeply teaches you how to enter every other place with patience, context and respect.</p>
             <p>Our roots in Bhubaneswar give Eastern Risen a distinctive perspective: close knowledge of Odisha’s temple towns, coast, forests, craft traditions and communities, alongside the experience to carry that same care across India and beyond.</p>
             <Link className="button" href="/destinations#odisha">Discover Odisha</Link>
           </div>

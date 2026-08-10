@@ -30,7 +30,7 @@ const journeys: Journey[] = [
     region: "Odisha · Heritage & coast",
     duration: "3 nights · 4 days",
     description:
-      "Temple cities, the sweep of Chilika and Puri’s coast—an intimate introduction to our home ground.",
+      "Temple cities, the sweep of Chilika and Puri’s coast offer an intimate introduction to our home ground.",
     ...tourMedia("odisha-golden-triangle"),
   },
   {
@@ -128,7 +128,7 @@ export default function Home() {
           </div>
           <div className="intro__copy">
             <p className="lead">
-              We design private and small-group journeys for travellers who want to understand a place—not simply pass through it.
+              We design private and small-group journeys for travellers who want to understand a place, not simply pass through it.
             </p>
             <p>
               From Odisha’s temple towns and wild coast to the eastern Himalaya and neighbouring lands, every route is considered with curiosity, context and care.
@@ -193,7 +193,7 @@ export default function Home() {
                 Ancient temple cities. Forested river deltas. Buddhist hills, weaving villages and one of Asia’s great lagoons.
               </p>
               <p>
-                Odisha is more than a destination in our collection—it is the perspective from which we travel. Here, depth comes from knowing which road to take, when to pause and how to enter a place with respect.
+                Odisha is more than a destination in our collection. It shapes the way we travel. Here, depth comes from knowing which road to take, when to pause and how to enter a place with respect.
               </p>
               <Link className="text-link text-link--light" href="/destinations#odisha">Explore Odisha <Arrow /></Link>
             </div>

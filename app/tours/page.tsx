@@ -22,7 +22,7 @@ export default function ToursPage() {
             <h1 id="collection-title">Travel deeper.<br />Stay curious.</h1>
           </div>
           <div className="collection-hero__copy">
-            <p className="lead">Journeys for people who want to understand a place—not simply pass through it.</p>
+            <p className="lead">Journeys for people who want to understand a place, not simply pass through it.</p>
             <p>Explore our inherited itinerary library across India and neighbouring lands. Every route can become a starting point for a private journey shaped around your interests and pace.</p>
           </div>
           <div className="collection-stats" aria-label="Journey collection overview">

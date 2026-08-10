@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1730,
         height: 909,
-        alt: "Eastern Risen — Journeys that bring you closer",
+        alt: "Eastern Risen, journeys that bring you closer",
       },
     ],
   },

@@ -69,7 +69,7 @@ export default function JournalPage() {
         <section className="journal-letter shell" aria-labelledby="journal-letter-title">
           <p className="eyebrow eyebrow--warm">A note from Bhubaneswar</p>
           <h2 id="journal-letter-title">The best journeys begin with a good question.</h2>
-          <p>Tell us what you are curious about—the landscape, a living tradition, a particular season—and we will help turn that curiosity into a thoughtful route.</p>
+          <p>Tell us what you are curious about. It could be a landscape, a living tradition or a particular season. We will help turn that curiosity into a thoughtful route.</p>
           <Link className="button button--light" href="/contact">Start a conversation <span aria-hidden="true">↗</span></Link>
         </section>
 

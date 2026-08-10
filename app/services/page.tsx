@@ -23,7 +23,7 @@ export default function ServicesPage() {
           </div>
           <div className="services-hero__copy">
             <p className="lead">Good travel depends on the details working quietly in the background.</p>
-            <p>Eastern Risen began as a full-service travel intermediary. Today, that experience supports the complete journey—from route design and road transport to flights and destination-specific documentation.</p>
+            <p>Eastern Risen began as a full-service travel intermediary. Today, that experience supports the whole journey, from route design and road transport to flights and destination-specific documentation.</p>
           </div>
         </section>
 

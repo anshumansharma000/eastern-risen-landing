@@ -36,7 +36,7 @@ export const travelStyleDefinitions: TravelStyleDefinition[] = [
     name: "Culture & Festivals",
     eyebrow: "Context before spectacle",
     description: "Festivals, communities and regional traditions approached with curiosity and respect.",
-    introduction: "The most rewarding cultural journeys are grounded in context. We make room for conversation, careful observation and an understanding that communities are hosts—not attractions.",
+    introduction: "The most rewarding cultural journeys are grounded in context. We make room for conversation, careful observation and an understanding that communities are hosts, not attractions.",
     image: "/images/sikkim-himalaya.webp",
     imageAlt: "Prayer flags framing a Himalayan cultural landscape in Sikkim",
   },
