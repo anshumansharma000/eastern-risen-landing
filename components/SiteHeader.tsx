@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { LanguageSelector } from "@/components/LanguageSelector";
 
 type SiteHeaderProps = {
   variant?: "overlay" | "light";
@@ -65,7 +64,6 @@ export function SiteHeader({ variant = "overlay", current }: SiteHeaderProps) {
         </nav>
 
         <div className="header-actions">
-          <LanguageSelector />
           <Link className="button button--header" href="/contact" aria-current={current === "contact" ? "page" : undefined}>Contact us</Link>
         </div>
 
@@ -73,7 +71,6 @@ export function SiteHeader({ variant = "overlay", current }: SiteHeaderProps) {
           <summary aria-label="Open navigation"><span className="menu-lines" aria-hidden="true" /></summary>
           <div className="mobile-nav__panel">
             {links.map((link) => <Link key={link.key} href={link.href}>{link.label}</Link>)}
-            <LanguageSelector mobile />
             <Link className="button" href="/contact">Contact us</Link>
           </div>
         </details>
