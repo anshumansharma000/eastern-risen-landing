@@ -172,3 +172,28 @@ test("server-renders the journal", async () => {
   assert.match(html, /The best journeys begin with a good question/i);
   assert.doesNotMatch(html, /Server Action/i);
 });
+
+test("server-renders complete journal stories", async () => {
+  const response = await render("/journal/odisha-coast");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>When Odisha’s coast feels most alive \| Eastern Risen<\/title>/i);
+  assert.match(html, /Chilika in motion/i);
+  assert.match(html, /Temple towns and ordinary mornings/i);
+  assert.match(html, /Continue reading/i);
+  assert.doesNotMatch(html, /Server Action/i);
+});
+
+test("server-renders the legal pages", async () => {
+  const terms = await (await render("/terms-of-service")).text();
+  const privacy = await (await render("/privacy-policy")).text();
+
+  assert.match(terms, /<title>Terms of Service \| Eastern Risen<\/title>/i);
+  assert.match(terms, /Planning and booking/i);
+  assert.match(terms, /Changes and cancellations/i);
+  assert.match(privacy, /<title>Privacy Policy \| Eastern Risen<\/title>/i);
+  assert.match(privacy, /Information we collect/i);
+  assert.match(privacy, /Your choices and rights/i);
+  assert.doesNotMatch(`${terms}${privacy}`, /Server Action/i);
+});

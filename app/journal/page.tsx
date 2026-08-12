@@ -31,15 +31,15 @@ export default function JournalPage() {
         </section>
 
         <section className="journal-feature shell" id={featured.slug} aria-labelledby="featured-note-title">
-          <div className="journal-feature__image">
+          <Link className="journal-feature__image" href={`/journal/${featured.slug}`} aria-label={`Read ${featured.title}`}>
             <Image src={featured.image} alt={featured.imageAlt} fill unoptimized priority sizes="(max-width: 800px) 100vw, 55vw" />
-          </div>
+          </Link>
           <div className="journal-feature__content">
             <p className="eyebrow">Featured · {featured.label}</p>
-            <h2 id="featured-note-title">{featured.title}</h2>
+            <h2 id="featured-note-title"><Link href={`/journal/${featured.slug}`}>{featured.title}</Link></h2>
             <p className="lead">{featured.excerpt}</p>
             <div className="journal-entry__meta"><span>{featured.season}</span><span>{featured.readTime}</span></div>
-            <Link className="text-link text-link--large" href="/contact">Plan a journey with this perspective <span aria-hidden="true">↗</span></Link>
+            <Link className="text-link text-link--large" href={`/journal/${featured.slug}`}>Read the full story <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
 
@@ -51,16 +51,19 @@ export default function JournalPage() {
           <div className="journal-grid">
             {entries.map((entry, index) => (
               <article className="journal-entry" id={entry.slug} key={entry.slug}>
-                <div className="journal-entry__image">
-                  <Image src={entry.image} alt={entry.imageAlt} fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 50vw" />
-                  <span>0{index + 2}</span>
-                </div>
-                <div className="journal-entry__body">
-                  <p className="eyebrow">{entry.label}</p>
-                  <h3>{entry.title}</h3>
-                  <p>{entry.excerpt}</p>
-                  <div className="journal-entry__meta"><span>{entry.season}</span><span>{entry.readTime}</span></div>
-                </div>
+                <Link className="journal-entry__link" href={`/journal/${entry.slug}`} aria-label={`Read ${entry.title}`}>
+                  <div className="journal-entry__image">
+                    <Image src={entry.image} alt={entry.imageAlt} fill unoptimized loading="lazy" decoding="async" sizes="(max-width: 720px) 100vw, 50vw" />
+                    <span>0{index + 2}</span>
+                  </div>
+                  <div className="journal-entry__body">
+                    <p className="eyebrow">{entry.label}</p>
+                    <h3>{entry.title}</h3>
+                    <p>{entry.excerpt}</p>
+                    <div className="journal-entry__meta"><span>{entry.season}</span><span>{entry.readTime}</span></div>
+                    <span className="journal-entry__read">Read the full story <span aria-hidden="true">↗</span></span>
+                  </div>
+                </Link>
               </article>
             ))}
           </div>
