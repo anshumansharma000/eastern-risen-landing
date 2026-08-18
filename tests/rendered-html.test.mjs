@@ -21,6 +21,10 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /Odisha Golden Triangle/);
   assert.match(html, /Where would you like to go next\?/);
   assert.match(html, /src="\/images\/hero-odisha-dawn-v2\.webp"/);
+  assert.match(html, /src="\/images\/odisha-temple\.webp"/);
+  assert.match(html, /src="\/images\/odisha-weaving\.webp"/);
+  assert.match(html, /Scenes from Odisha/i);
+  assert.match(html, /Pause image carousel/i);
   assert.match(html, /src="\/images\/eastern-risen-logo\.png"/);
   assert.match(html, /loading="lazy"/);
   assert.doesNotMatch(html, /\/_vinext\/image\?/);

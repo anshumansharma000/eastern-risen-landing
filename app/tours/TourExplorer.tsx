@@ -22,7 +22,8 @@ const sectionDefinitions = [
     id: "odisha",
     eyebrow: "Our home ground",
     title: "Odisha",
-    description: "Temple towns, forested hills, coastal wetlands and living craft traditions, explored with the perspective that comes from knowing a place closely.",
+    description:
+      "Temple towns, forested hills, coastal wetlands and living craft traditions, explored with the perspective that comes from knowing a place closely.",
     regions: ["Odisha"],
     previewCount: 6,
   },
@@ -30,7 +31,8 @@ const sectionDefinitions = [
     id: "northeast-india",
     eyebrow: "Eastern Himalaya",
     title: "Northeast India & Sikkim",
-    description: "Mountain roads, wildlife-rich valleys and distinct cultural landscapes across India’s remarkable northeastern reaches.",
+    description:
+      "Mountain roads, wildlife-rich valleys and distinct cultural landscapes across India’s remarkable northeastern reaches.",
     regions: ["Northeast India"],
     previewCount: 4,
   },
@@ -38,7 +40,8 @@ const sectionDefinitions = [
     id: "north-india",
     eyebrow: "Across the north",
     title: "North India",
-    description: "Layered cities, sacred routes and high-altitude landscapes, brought together through journeys with room to look beyond the familiar.",
+    description:
+      "Layered cities, sacred routes and high-altitude landscapes, brought together through journeys with room to look beyond the familiar.",
     regions: ["North India"],
     previewCount: 4,
   },
@@ -46,7 +49,8 @@ const sectionDefinitions = [
     id: "rest-of-india",
     eyebrow: "Further across India",
     title: "South, Central & West India",
-    description: "A varied collection spanning the southern coast, central forests and the craft-rich landscapes of western India.",
+    description:
+      "A varied collection spanning the southern coast, central forests and the craft-rich landscapes of western India.",
     regions: ["South India", "Central India", "West India"],
     previewCount: 4,
   },
@@ -54,7 +58,8 @@ const sectionDefinitions = [
     id: "nepal-bhutan",
     eyebrow: "Himalayan neighbours",
     title: "Nepal & Bhutan",
-    description: "Thoughtful routes through mountain kingdoms shaped by enduring traditions, Buddhist heritage and expansive Himalayan scenery.",
+    description:
+      "Thoughtful routes through mountain kingdoms shaped by enduring traditions, Buddhist heritage and expansive Himalayan scenery.",
     regions: ["Nepal", "Bhutan"],
     previewCount: 4,
   },
@@ -62,7 +67,8 @@ const sectionDefinitions = [
     id: "beyond-india",
     eyebrow: "Beyond India",
     title: "Sri Lanka, Tibet & Southeast Asia",
-    description: "Island heritage, trans-Himalayan culture and Southeast Asian cityscapes extend the collection into neighbouring lands.",
+    description:
+      "Island heritage, trans-Himalayan culture and Southeast Asian cityscapes extend the collection into neighbouring lands.",
     regions: ["Sri Lanka", "Tibet", "Southeast Asia"],
     previewCount: 4,
   },
@@ -70,7 +76,8 @@ const sectionDefinitions = [
     id: "special-interest",
     eyebrow: "Follow an interest",
     title: "Special Interest & Across India",
-    description: "Festival, cultural and multi-region itineraries that cross geographic boundaries and begin with a particular curiosity.",
+    description:
+      "Festival, cultural and multi-region itineraries that cross geographic boundaries and begin with a particular curiosity.",
     regions: ["India"],
     previewCount: 4,
   },
@@ -84,14 +91,18 @@ function durationMatches(days: number | null, filter: DurationFilter) {
 }
 
 function toggleValue(current: string[], value: string) {
-  return current.includes(value) ? current.filter((item) => item !== value) : [...current, value];
+  return current.includes(value)
+    ? current.filter((item) => item !== value)
+    : [...current, value];
 }
 
 function sortTours(tours: Tour[], sort: SortOption) {
   return [...tours].sort((a, b) => {
     if (sort === "az") return a.title.localeCompare(b.title);
-    if (sort === "shortest") return (a.durationDays ?? 999) - (b.durationDays ?? 999);
-    if (sort === "longest") return (b.durationDays ?? -1) - (a.durationDays ?? -1);
+    if (sort === "shortest")
+      return (a.durationDays ?? 999) - (b.durationDays ?? 999);
+    if (sort === "longest")
+      return (b.durationDays ?? -1) - (a.durationDays ?? -1);
     return 0;
   });
 }
@@ -105,12 +116,18 @@ export function TourExplorer({
   regions: string[];
   styles: string[];
 }) {
-  const locationSearch = useSyncExternalStore(subscribeToLocation, getLocationSearch, getServerSearch);
+  const locationSearch = useSyncExternalStore(
+    subscribeToLocation,
+    getLocationSearch,
+    getServerSearch,
+  );
   const query = new URLSearchParams(locationSearch);
   const queryRegion = query.get("region");
   const queryStyle = query.get("style");
-  const defaultRegions = queryRegion && regions.includes(queryRegion) ? [queryRegion] : [];
-  const defaultStyles = queryStyle && styles.includes(queryStyle) ? [queryStyle] : [];
+  const defaultRegions =
+    queryRegion && regions.includes(queryRegion) ? [queryRegion] : [];
+  const defaultStyles =
+    queryStyle && styles.includes(queryStyle) ? [queryStyle] : [];
   const [search, setSearch] = useState("");
   const [regionSelection, setRegionSelection] = useState<string[] | null>(null);
   const [styleSelection, setStyleSelection] = useState<string[] | null>(null);
@@ -122,20 +139,35 @@ export function TourExplorer({
   const selectedStyles = styleSelection ?? defaultStyles;
 
   function setSelectedRegions(action: SetStateAction<string[]>) {
-    setRegionSelection((current) => typeof action === "function" ? action(current ?? defaultRegions) : action);
+    setRegionSelection((current) =>
+      typeof action === "function" ? action(current ?? defaultRegions) : action,
+    );
   }
 
   function setSelectedStyles(action: SetStateAction<string[]>) {
-    setStyleSelection((current) => typeof action === "function" ? action(current ?? defaultStyles) : action);
+    setStyleSelection((current) =>
+      typeof action === "function" ? action(current ?? defaultStyles) : action,
+    );
   }
 
   const filteredTours = (() => {
     const query = search.trim().toLowerCase();
     const result = tours.filter((tour) => {
-      const matchesSearch = !query || `${tour.title} ${tour.route} ${tour.region} ${tour.travelStyle}`.toLowerCase().includes(query);
-      const matchesRegion = selectedRegions.length === 0 || selectedRegions.includes(tour.region);
-      const matchesStyle = selectedStyles.length === 0 || selectedStyles.includes(tour.travelStyle);
-      const matchesDuration = selectedDurations.length === 0 || selectedDurations.some((value) => durationMatches(tour.durationDays, value as DurationFilter));
+      const matchesSearch =
+        !query ||
+        `${tour.title} ${tour.route} ${tour.region} ${tour.travelStyle}`
+          .toLowerCase()
+          .includes(query);
+      const matchesRegion =
+        selectedRegions.length === 0 || selectedRegions.includes(tour.region);
+      const matchesStyle =
+        selectedStyles.length === 0 ||
+        selectedStyles.includes(tour.travelStyle);
+      const matchesDuration =
+        selectedDurations.length === 0 ||
+        selectedDurations.some((value) =>
+          durationMatches(tour.durationDays, value as DurationFilter),
+        );
       return matchesSearch && matchesRegion && matchesStyle && matchesDuration;
     });
 
@@ -145,11 +177,20 @@ export function TourExplorer({
   const browseSections = sectionDefinitions
     .map((section) => ({
       ...section,
-      tours: sortTours(tours.filter((tour) => (section.regions as readonly string[]).includes(tour.region)), sort),
+      tours: sortTours(
+        tours.filter((tour) =>
+          (section.regions as readonly string[]).includes(tour.region),
+        ),
+        sort,
+      ),
     }))
     .filter((section) => section.tours.length > 0);
 
-  const activeFilters = [...selectedRegions, ...selectedStyles, ...selectedDurations];
+  const activeFilters = [
+    ...selectedRegions,
+    ...selectedStyles,
+    ...selectedDurations,
+  ];
   const isResultMode = search.trim().length > 0 || activeFilters.length > 0;
 
   function clearFilters() {
@@ -171,16 +212,30 @@ export function TourExplorer({
   }
 
   return (
-    <section className="tour-explorer shell" aria-labelledby="tour-results-title">
+    <section
+      className="tour-explorer shell"
+      aria-labelledby="tour-results-title"
+    >
       <div className="tour-toolbar">
         <label className="tour-search">
           <span className="sr-only">Search journeys</span>
           <span aria-hidden="true">⌕</span>
-          <input value={search} onChange={(event) => { setSearch(event.target.value); setVisibleCount(12); }} placeholder="Search by place, route or journey" type="search" />
+          <input
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value);
+              setVisibleCount(12);
+            }}
+            placeholder="Search by place, route or journey"
+            type="search"
+          />
         </label>
         <label className="tour-sort">
           <span>Sort by</span>
-          <select value={sort} onChange={(event) => setSort(event.target.value as SortOption)}>
+          <select
+            value={sort}
+            onChange={(event) => setSort(event.target.value as SortOption)}
+          >
             <option value="curated">Curated order</option>
             <option value="shortest">Shortest first</option>
             <option value="longest">Longest first</option>
@@ -192,12 +247,20 @@ export function TourExplorer({
       <details className="tour-filters">
         <summary>
           <span>Filter & refine</span>
-          <span>{activeFilters.length > 0 ? `${activeFilters.length} selected` : "Destination · Style · Duration"}</span>
+          <span>
+            {activeFilters.length > 0
+              ? `${activeFilters.length} selected`
+              : "Destination · Style · Duration"}
+          </span>
         </summary>
         <div className="tour-filters__content">
           <div className="filter-heading">
             <span>Refine your search</span>
-            {activeFilters.length > 0 || search ? <button type="button" onClick={clearFilters}>Reset all</button> : null}
+            {activeFilters.length > 0 || search ? (
+              <button type="button" onClick={clearFilters}>
+                Reset all
+              </button>
+            ) : null}
           </div>
           <div className="tour-filter-groups">
             <fieldset>
@@ -205,7 +268,16 @@ export function TourExplorer({
               <div className="filter-options">
                 {regions.map((region) => (
                   <label key={region}>
-                    <input type="checkbox" checked={selectedRegions.includes(region)} onChange={() => { setSelectedRegions((current) => toggleValue(current, region)); setVisibleCount(12); }} />
+                    <input
+                      type="checkbox"
+                      checked={selectedRegions.includes(region)}
+                      onChange={() => {
+                        setSelectedRegions((current) =>
+                          toggleValue(current, region),
+                        );
+                        setVisibleCount(12);
+                      }}
+                    />
                     <span>{region}</span>
                   </label>
                 ))}
@@ -216,7 +288,16 @@ export function TourExplorer({
               <div className="filter-options">
                 {styles.map((style) => (
                   <label key={style}>
-                    <input type="checkbox" checked={selectedStyles.includes(style)} onChange={() => { setSelectedStyles((current) => toggleValue(current, style)); setVisibleCount(12); }} />
+                    <input
+                      type="checkbox"
+                      checked={selectedStyles.includes(style)}
+                      onChange={() => {
+                        setSelectedStyles((current) =>
+                          toggleValue(current, style),
+                        );
+                        setVisibleCount(12);
+                      }}
+                    />
                     <span>{style}</span>
                   </label>
                 ))}
@@ -227,44 +308,90 @@ export function TourExplorer({
               <div className="filter-options">
                 {durationOptions.map((option) => (
                   <label key={option.value}>
-                    <input type="checkbox" checked={selectedDurations.includes(option.value)} onChange={() => { setSelectedDurations((current) => toggleValue(current, option.value)); setVisibleCount(12); }} />
+                    <input
+                      type="checkbox"
+                      checked={selectedDurations.includes(option.value)}
+                      onChange={() => {
+                        setSelectedDurations((current) =>
+                          toggleValue(current, option.value),
+                        );
+                        setVisibleCount(12);
+                      }}
+                    />
                     <span>{option.label}</span>
                   </label>
                 ))}
               </div>
             </fieldset>
           </div>
-          <p className="filter-note">Season and activity filters will be added as the legacy itineraries complete editorial review.</p>
+          <p className="filter-note">
+            Season and activity filters will be added as the legacy itineraries
+            complete editorial review.
+          </p>
         </div>
       </details>
 
       {!isResultMode ? (
         <>
-          <nav className="tour-section-nav" aria-label="Journey destinations">
+          <nav
+            className="tour-section-nav px-1"
+            aria-label="Journey destinations"
+          >
             {browseSections.map((section) => (
-              <a href={`#${section.id}`} key={section.id}><span>{section.title}</span><strong>{section.tours.length}</strong></a>
+              <a href={`#${section.id}`} key={section.id}>
+                <span>{section.title}</span>
+                <strong>{section.tours.length}</strong>
+              </a>
             ))}
           </nav>
           <div className="tour-groups">
             {browseSections.map((section, index) => {
               const expanded = expandedSections.includes(section.id);
-              const visibleTours = expanded ? section.tours : section.tours.slice(0, section.previewCount);
+              const visibleTours = expanded
+                ? section.tours
+                : section.tours.slice(0, section.previewCount);
               return (
-                <section className="tour-group" id={section.id} key={section.id} aria-labelledby={index === 0 ? "tour-results-title" : `${section.id}-title`}>
+                <section
+                  className="tour-group"
+                  id={section.id}
+                  key={section.id}
+                  aria-labelledby={
+                    index === 0 ? "tour-results-title" : `${section.id}-title`
+                  }
+                >
                   <div className="tour-group__heading">
                     <div>
                       <p className="eyebrow">{section.eyebrow}</p>
-                      <h2 id={index === 0 ? "tour-results-title" : `${section.id}-title`}>{section.title}</h2>
-                      <p className="tour-group__count">{section.tours.length} journeys</p>
+                      <h2
+                        id={
+                          index === 0
+                            ? "tour-results-title"
+                            : `${section.id}-title`
+                        }
+                      >
+                        {section.title}
+                      </h2>
+                      <p className="tour-group__count">
+                        {section.tours.length} journeys
+                      </p>
                     </div>
                     <p>{section.description}</p>
                   </div>
                   <div className="tour-collection-grid">
-                    {visibleTours.map((tour) => <TourCard tour={tour} key={tour.slug} />)}
+                    {visibleTours.map((tour) => (
+                      <TourCard tour={tour} key={tour.slug} />
+                    ))}
                   </div>
                   {section.tours.length > section.previewCount ? (
-                    <button className="button button--outline tour-group__action" type="button" onClick={() => toggleSection(section.id)} aria-expanded={expanded}>
-                      {expanded ? "Show fewer" : `View all ${section.tours.length} journeys`}
+                    <button
+                      className="button button--outline tour-group__action"
+                      type="button"
+                      onClick={() => toggleSection(section.id)}
+                      aria-expanded={expanded}
+                    >
+                      {expanded
+                        ? "Show fewer"
+                        : `View all ${section.tours.length} journeys`}
                     </button>
                   ) : null}
                 </section>
@@ -282,8 +409,14 @@ export function TourExplorer({
             {activeFilters.length > 0 ? (
               <div className="active-filters" aria-label="Active filters">
                 {activeFilters.map((filter) => (
-                  <button type="button" key={filter} onClick={() => removeFilter(filter)}>
-                    {durationOptions.find((option) => option.value === filter)?.label ?? filter} <span aria-hidden="true">×</span>
+                  <button
+                    type="button"
+                    key={filter}
+                    onClick={() => removeFilter(filter)}
+                  >
+                    {durationOptions.find((option) => option.value === filter)
+                      ?.label ?? filter}{" "}
+                    <span aria-hidden="true">×</span>
                   </button>
                 ))}
               </div>
@@ -293,10 +426,16 @@ export function TourExplorer({
           {filteredTours.length > 0 ? (
             <>
               <div className="tour-collection-grid">
-                {filteredTours.slice(0, visibleCount).map((tour) => <TourCard tour={tour} key={tour.slug} />)}
+                {filteredTours.slice(0, visibleCount).map((tour) => (
+                  <TourCard tour={tour} key={tour.slug} />
+                ))}
               </div>
               {visibleCount < filteredTours.length ? (
-                <button className="button button--outline load-more" type="button" onClick={() => setVisibleCount((count) => count + 12)}>
+                <button
+                  className="button button--outline load-more"
+                  type="button"
+                  onClick={() => setVisibleCount((count) => count + 12)}
+                >
                   Show more journeys
                 </button>
               ) : null}
@@ -305,8 +444,13 @@ export function TourExplorer({
             <div className="tour-empty">
               <p className="eyebrow">No exact matches</p>
               <h3>Let’s widen the map.</h3>
-              <p>Try removing a filter or search for a broader destination. We can also design a private journey beyond the listed routes.</p>
-              <button className="button" type="button" onClick={clearFilters}>Clear filters</button>
+              <p>
+                Try removing a filter or search for a broader destination. We
+                can also design a private journey beyond the listed routes.
+              </p>
+              <button className="button" type="button" onClick={clearFilters}>
+                Clear filters
+              </button>
             </div>
           )}
         </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PlanningCta } from "@/components/PlanningCta";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { tours } from "@/lib/tours";
@@ -95,15 +96,7 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <Image
-            className="hero__image"
-            src="/images/hero-odisha-dawn-v2.webp"
-            alt="A quiet river winding through forested hills in Odisha at dawn"
-            fill
-            unoptimized
-            priority
-            sizes="100vw"
-          />
+          <HeroCarousel />
           <div className="hero__shade" />
           <div className="shell hero__content">
             <p className="eyebrow eyebrow--light">Private journeys · India & beyond</p>
