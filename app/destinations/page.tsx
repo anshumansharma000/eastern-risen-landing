@@ -58,7 +58,16 @@ export default function DestinationsPage() {
         </section>
 
         <nav className="destination-nav shell" aria-label="Explore destinations">
-          {destinationDefinitions.map((destination) => <a href={`#${destination.id}`} key={destination.id}>{destination.name}</a>)}
+          {destinationDefinitions.map((destination) => {
+            const journeyCount = tours.filter((tour) => tour.region === destination.region).length;
+
+            return (
+              <a href={`#${destination.id}`} key={destination.id}>
+                <span>{destination.name}</span>
+                <strong>{journeyCount}</strong>
+              </a>
+            );
+          })}
         </nav>
 
         <section className="destination-odisha shell" id="odisha" aria-labelledby="odisha-destination-title">

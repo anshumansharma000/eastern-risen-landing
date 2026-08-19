@@ -5,6 +5,7 @@ import company from "@/content-bank/data/company.json";
 import { PlanningCta } from "@/components/PlanningCta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { AboutTrustStatements } from "@/components/TrustStatements";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -41,6 +42,8 @@ export default function AboutPage() {
           <div><strong>Private & small group</strong><span>Journeys shaped around people, not volume</span></div>
           <div><strong>India & beyond</strong><span>Distinctive routes into neighbouring lands</span></div>
         </section>
+
+        <AboutTrustStatements />
 
         <section className="about-story section shell" aria-labelledby="story-title">
           <div>

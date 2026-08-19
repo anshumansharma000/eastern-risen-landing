@@ -333,10 +333,7 @@ export function TourExplorer({
 
       {!isResultMode ? (
         <>
-          <nav
-            className="tour-section-nav px-1"
-            aria-label="Journey destinations"
-          >
+          <nav className="tour-section-nav" aria-label="Journey destinations">
             {browseSections.map((section) => (
               <a href={`#${section.id}`} key={section.id}>
                 <span>{section.title}</span>

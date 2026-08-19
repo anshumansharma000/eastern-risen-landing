@@ -20,6 +20,10 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /Journeys that bring you closer\./);
   assert.match(html, /Odisha Golden Triangle/);
   assert.match(html, /Where would you like to go next\?/);
+  assert.match(html, /Active member of/i);
+  assert.match(html, /Commitment to sustainable tourism/i);
+  assert.match(html, /commitment-to-sustainable-tourism\.pdf/i);
+  assert.match(html, /Recognised by the Ministry of Tourism, Government of India/i);
   assert.match(html, /src="\/images\/hero-odisha-dawn-v2\.webp"/);
   assert.match(html, /src="\/images\/odisha-temple\.webp"/);
   assert.match(html, /src="\/images\/odisha-weaving\.webp"/);
@@ -88,7 +92,9 @@ test("server-renders a complete tour detail page", async () => {
   assert.match(html, /Day 1/i);
   assert.match(html, /Arrival Bhubaneswar/i);
   assert.match(html, /Related journeys/i);
-  assert.match(html, /Start a conversation/i);
+  assert.match(html, /Make this yours/i);
+  assert.match(html, /personalised plan and quote/i);
+  assert.match(html, /Ministry of Tourism recognised/i);
   assert.doesNotMatch(html, /Book now|Server Action/i);
 });
 
@@ -161,7 +167,9 @@ test("server-renders the about page", async () => {
   assert.match(html, /Personal care, made practical/i);
   assert.match(html, /Odisha is our signature, not our limit/i);
   assert.match(html, /Respect belongs in the itinerary/i);
-  assert.doesNotMatch(html, /IATO|ADTOI|ATOAI|TOFTigers/i);
+  assert.match(html, /Recognition &amp; memberships/i);
+  assert.match(html, /IATO/i);
+  assert.match(html, /TOFTigers/i);
 });
 
 test("server-renders the journal", async () => {

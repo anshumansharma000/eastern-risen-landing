@@ -40,6 +40,13 @@ export function SiteFooter() {
             <Link href="/about">Our approach</Link>
             <Link href="/journal">Field notes</Link>
             <Link href="/contact">Contact us</Link>
+            <a
+              href="/documents/commitment-to-sustainable-tourism.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Commitment to sustainable tourism
+            </a>
             {/* <Link href="/photo-credits">Photo credits</Link> */}
           </div>
         </div>

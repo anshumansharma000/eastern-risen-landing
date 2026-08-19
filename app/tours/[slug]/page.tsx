@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { TourCard } from "@/components/TourCard";
+import { TourEnquiryModal } from "@/components/TourEnquiryModal";
+import { TourTrustStatement } from "@/components/TrustStatements";
 import { getTourDetail } from "@/lib/tour-details";
 import { tours } from "@/lib/tours";
 
@@ -129,8 +131,9 @@ export default async function TourDetailPage({ params }: TourPageProps) {
             <p className="eyebrow">Make it yours</p>
             <h2>Interested in this journey?</h2>
             <p>Tell us what caught your attention. We’ll help refine the route around your time, pace and priorities.</p>
-            <a className="button" href={`mailto:info@easternrisen.com?subject=${mailSubject}`}>Start a conversation <span aria-hidden="true">↗</span></a>
+            <TourEnquiryModal tourTitle={tour.title} region={tour.region} duration={tour.duration} />
             <small>No fixed departures or made-up pricing. Just a thoughtful planning conversation.</small>
+            <TourTrustStatement />
           </aside>
         </div>
 
@@ -147,7 +150,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         ) : null}
       </main>
 
-      <div className="tour-mobile-cta"><span>{tour.title}</span><a className="button" href={`mailto:info@easternrisen.com?subject=${mailSubject}`}>Plan this journey</a></div>
+      <div className="tour-mobile-cta"><span>{tour.title}</span><TourEnquiryModal tourTitle={tour.title} region={tour.region} duration={tour.duration} compact /></div>
       <SiteFooter />
     </>
   );

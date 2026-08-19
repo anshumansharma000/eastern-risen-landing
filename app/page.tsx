@@ -4,6 +4,7 @@ import { PlanningCta } from "@/components/PlanningCta";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { HomeTrustStatements } from "@/components/TrustStatements";
 import { tours } from "@/lib/tours";
 import { travelStyleDefinitions } from "@/lib/travel-styles";
 import { journalEntries } from "@/lib/journal";
@@ -147,6 +148,7 @@ export default function Home() {
               <div className="principle-card__content"><strong>Personal care</strong><span>A human hand throughout</span></div>
             </div>
           </div>
+          <HomeTrustStatements />
         </section>
 
         <section className="journeys section" id="journeys" aria-labelledby="journeys-title">
