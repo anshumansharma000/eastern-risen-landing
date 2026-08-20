@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { VisitorCounter } from "@/components/VisitorCounter";
 
 export function SiteFooter() {
   return (
@@ -55,6 +56,7 @@ export function SiteFooter() {
         <span>
           © {new Date().getFullYear()} Eastern Risen Expedition Pvt. Ltd.
         </span>
+        <VisitorCounter />
         <div className="footer__legal">
           <Link href="/terms-of-service">Terms of service</Link>
           <Link href="/privacy-policy">Privacy policy</Link>

@@ -82,6 +82,7 @@ const sections: LegalSection[] = [
     title: "Cookies, analytics and outside links",
     content: <>
       <p>Our website and hosting providers may use essential cookies or similar technologies to deliver pages, remember basic choices, protect the site and understand general traffic. If we introduce non-essential analytics or advertising cookies, we will provide any notice or choice required by applicable law.</p>
+      <p>We use GoatCounter to understand general website traffic and display an aggregate visit count. GoatCounter does not use cookies or store IP addresses, full browser user-agent headers or persistent tracking identifiers.</p>
       <p>You can control cookies through your browser. Blocking some essential technologies may affect how the website works.</p>
       <p>Our website may link to airlines, hotels, tourism authorities, social platforms and other outside services. Their privacy practices are their own, and we encourage you to read the notices that apply when you use them.</p>
     </>,

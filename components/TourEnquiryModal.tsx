@@ -2,6 +2,8 @@
 
 import { useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 
+const enquiryEndpoint = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL;
+
 type TourEnquiryModalProps = {
   tourTitle: string;
   region: string;
@@ -14,9 +16,13 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
   const titleId = useId();
   const descriptionId = useId();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   function openModal() {
     setSubmitted(false);
+    setSubmitting(false);
+    setSubmitError("");
     dialogRef.current?.showModal();
   }
 
@@ -28,9 +34,43 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
     if (event.target === event.currentTarget) closeModal();
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitError("");
+
+    if (!enquiryEndpoint) {
+      setSubmitError("Enquiry delivery is not configured yet. Please contact us by email or phone.");
+      return;
+    }
+
+    const form = event.currentTarget;
+    const fields = Object.fromEntries(new FormData(form).entries());
+
+    setSubmitting(true);
+
+    try {
+      // Apps Script does not return browser CORS headers. A simple no-cors POST
+      // lets this static site deliver the enquiry without exposing credentials.
+      await fetch(enquiryEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          ...fields,
+          tourTitle,
+          region,
+          duration,
+          pageUrl: window.location.href,
+        }),
+      });
+
+      form.reset();
+      setSubmitted(true);
+    } catch {
+      setSubmitError("We could not send your enquiry. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -57,7 +97,7 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
               <p className="eyebrow eyebrow--warm">Your journey brief</p>
               <h2 id={titleId}>Thank you. Your requirements are ready for review.</h2>
               <p id={descriptionId}>Our team will analyse your requirements and prepare a personalised plan and quote for the email address and phone number you provided.</p>
-              <p className="tour-enquiry-success__note">This front-end preview does not send the enquiry yet. Delivery will be enabled when the form is connected to the backend.</p>
+              <p className="tour-enquiry-success__note">Your enquiry has been sent to our planning team for processing.</p>
               <button className="button" type="button" onClick={closeModal}>Close</button>
             </div>
           ) : (
@@ -74,6 +114,10 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
               </header>
 
               <form className="tour-enquiry-form" onSubmit={handleSubmit}>
+                <label className="tour-enquiry-form__honeypot" aria-hidden="true">
+                  <span>Website</span>
+                  <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </label>
                 <fieldset>
                   <legend>Your details</legend>
                   <div className="tour-enquiry-form__grid">
@@ -142,8 +186,13 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
                 </fieldset>
 
                 <div className="tour-enquiry-form__footer">
-                  <p>Submitting this form does not confirm a booking. We will contact you with a tailored plan and quote first.</p>
-                  <button className="button" type="submit">Send my requirements <span aria-hidden="true">↗</span></button>
+                  <div>
+                    <p>Submitting this form does not confirm a booking. We will contact you with a tailored plan and quote first.</p>
+                    {submitError ? <p className="tour-enquiry-form__error" role="alert">{submitError}</p> : null}
+                  </div>
+                  <button className="button" type="submit" disabled={submitting} aria-busy={submitting}>
+                    {submitting ? "Sending…" : "Send my requirements"} {!submitting ? <span aria-hidden="true">↗</span> : null}
+                  </button>
                 </div>
               </form>
             </>

@@ -30,6 +30,9 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /Scenes from Odisha/i);
   assert.match(html, /Pause image carousel/i);
   assert.match(html, /src="\/images\/eastern-risen-logo\.png"/);
+  assert.match(html, /490,302(?:<!-- -->)? site visits and counting/i);
+  assert.match(html, /https:\/\/gc\.zgo\.at\/count\.js/i);
+  assert.match(html, /https:\/\/easternrisen\.goatcounter\.com\/count/i);
   assert.match(html, /loading="lazy"/);
   assert.doesNotMatch(html, /\/_vinext\/image\?/);
   assert.doesNotMatch(html, /react-loading-skeleton|Server Action/i);
@@ -207,5 +210,6 @@ test("server-renders the legal pages", async () => {
   assert.match(privacy, /<title>Privacy Policy \| Eastern Risen<\/title>/i);
   assert.match(privacy, /Information we collect/i);
   assert.match(privacy, /Your choices and rights/i);
+  assert.match(privacy, /We use GoatCounter to understand general website traffic/i);
   assert.doesNotMatch(`${terms}${privacy}`, /Server Action/i);
 });

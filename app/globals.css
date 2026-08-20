@@ -221,7 +221,9 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
 .footer__links strong { margin-bottom: 12px; color: #f3a36d; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .footer__links a { width: fit-content; color: rgba(255,255,255,.72); font-size: 13px; }
 .footer__links a:hover { color: white; }
-.footer__bottom { display: flex; justify-content: space-between; gap: 24px; padding-block: 22px; color: rgba(255,255,255,.42); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.footer__bottom { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding-block: 22px; color: rgba(255,255,255,.42); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.footer__visitor-count { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; justify-self: center; gap: 9px; padding: 7px 13px; border: 1px solid rgba(243,163,109,.28); border-radius: 999px; background: rgba(243,163,109,.09); color: #f3a36d; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-align: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.footer__visitor-count::before { width: 5px; height: 5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 3px rgba(243,163,109,.12); content: ""; }
 .footer__legal { display: flex; justify-content: flex-end; gap: 24px; }
 .footer__legal a { transition: color .2s ease; }
 .footer__legal a:hover { color: white; }
@@ -408,6 +410,7 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
 .tour-enquiry-modal__journey strong { font-family: var(--display); font-size: 23px; font-weight: 500; }
 .tour-enquiry-modal__journey small { color: var(--grey); font-size: 10px; }
 .tour-enquiry-form { display: grid; gap: 16px; margin-top: 28px; }
+.tour-enquiry-form__honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .tour-enquiry-form fieldset { min-width: 0; margin: 0; padding: 22px; border: 0; border-radius: 15px; background: white; box-shadow: 0 8px 26px rgba(73,53,38,.04); }
 .tour-enquiry-form legend { width: 100%; margin-bottom: 17px; padding-bottom: 10px; border-bottom: 1px solid rgba(37,34,31,.12); font-family: var(--display); font-size: 24px; }
 .tour-enquiry-form__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -422,7 +425,9 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
 .tour-enquiry-form textarea:focus { border-color: var(--rust); box-shadow: 0 0 0 3px rgba(185,80,22,.12); }
 .tour-enquiry-form__footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 18px 4px 4px; }
 .tour-enquiry-form__footer p { max-width: 500px; margin: 0; color: var(--grey); font-size: 10px; }
+.tour-enquiry-form__footer .tour-enquiry-form__error { margin-top: 9px; color: #9d2c24; font-size: 11px; }
 .tour-enquiry-form__footer .button { flex: 0 0 auto; }
+.tour-enquiry-form__footer .button:disabled { cursor: wait; opacity: .68; transform: none; }
 .tour-enquiry-success { display: flex; min-height: min(660px, calc(100dvh - 156px)); max-width: 720px; justify-content: center; align-items: flex-start; margin-inline: auto; padding-block: 70px; flex-direction: column; }
 .tour-enquiry-success > span { display: grid; width: 58px; height: 58px; margin-bottom: 28px; place-items: center; border-radius: 50%; background: #e1eadf; color: #315b34; font-size: 24px; }
 .tour-enquiry-success h2 { margin-bottom: 26px; font-size: clamp(47px, 6vw, 72px); }
@@ -852,7 +857,8 @@ h2 { max-width: 840px; font-size: clamp(44px, 6vw, 78px); line-height: .98; }
   .planning h2 { font-size: 61px; }
   .footer__top { grid-template-columns: 1fr; }
   .footer__links { gap: 24px; }
-  .footer__bottom { flex-direction: column; gap: 12px; }
+  .footer__bottom { grid-template-columns: 1fr; gap: 12px; }
+  .footer__visitor-count { justify-self: start; text-align: left; }
   .footer__legal { justify-content: flex-start; flex-wrap: wrap; gap: 8px 18px; }
   .site-header--light .header-inner { min-height: 76px; }
   .collection-hero { grid-template-columns: 1fr; gap: 30px; padding-block: 66px 72px; }
