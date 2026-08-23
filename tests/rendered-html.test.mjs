@@ -25,8 +25,12 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /commitment-to-sustainable-tourism\.pdf/i);
   assert.match(html, /Recognised by the Ministry of Tourism, Government of India/i);
   assert.match(html, /src="\/images\/hero-odisha-dawn-v2\.webp"/);
+  assert.match(html, /src="\/images\/hero-jagannath-temple\.webp"/);
+  assert.match(html, /src="\/images\/hero-konark-wheel\.webp"/);
+  assert.match(html, /src="\/images\/hero-chilika-lake\.webp"/);
+  assert.match(html, /src="\/images\/hero-odissi-dance\.webp"/);
+  assert.match(html, /src="\/images\/hero-pattachitra-artist\.webp"/);
   assert.match(html, /src="\/images\/odisha-temple\.webp"/);
-  assert.match(html, /src="\/images\/odisha-weaving\.webp"/);
   assert.match(html, /Scenes from Odisha/i);
   assert.match(html, /Pause image carousel/i);
   assert.match(html, /src="\/images\/eastern-risen-logo\.png"/);

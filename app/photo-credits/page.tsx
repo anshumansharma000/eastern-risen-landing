@@ -22,6 +22,26 @@ export default function PhotoCreditsPage() {
           </div>
           <ol className="credits-list">
             <li className="credit-item">
+              <strong>Homepage carousel · Jagannath Temple</strong>
+              <span>Jagannath Temple on 2022 Snana Jatra · Government of Odisha · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Jagannath_Temple_on_2022_Snana_Jatra.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage carousel · Konark Sun Temple</strong>
+              <span>Stone wheel at the Konark Sun Temple · Subhrajyoti07 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Stone_wheel_engraved_in_the_13th_century_built_Konark_Sun_Temple_in_Orissa,_India.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage carousel · Chilika Lake</strong>
+              <span>Chilika · Government of Odisha · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Chilika_Bhubaneswar.me.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage carousel · Odissi dance</strong>
+              <span>Odissi Dance Form · Swaprabha Chattopadhyay · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Odissi_Dance_Form.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
+              <strong>Homepage carousel · Pattachitra artist</strong>
+              <span>Pattachitra artist at work in Odisha · Euphoric Captures · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Pattachitra_artist_at_work_in_Odisha,_India.jpg" target="_blank" rel="noreferrer">View source</a></span>
+            </li>
+            <li className="credit-item">
               <strong>Homepage · Local depth</strong>
               <span>Konark Sun Temple wheel · Ankur Panchbudhe · CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Konark_Sun_Temple_wheel.jpg" target="_blank" rel="noreferrer">View source</a></span>
             </li>

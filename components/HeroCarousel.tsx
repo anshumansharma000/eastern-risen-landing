@@ -10,18 +10,28 @@ const slides = [
     position: "center 54%",
   },
   {
-    src: "/images/odisha-temple.webp",
-    alt: "The carved stone towers of an Odisha temple in warm evening light",
+    src: "/images/hero-jagannath-temple.webp",
+    alt: "Jagannath Temple in Puri during the 2022 Snana Jatra festival",
     position: "center center",
   },
   {
-    src: "/images/odisha-weaving.webp",
-    alt: "An Odisha artisan weaving a traditional textile by hand",
+    src: "/images/hero-konark-wheel.webp",
+    alt: "An intricately carved stone wheel at the Konark Sun Temple in Odisha",
     position: "center center",
   },
   {
-    src: "/images/tours/tour-016-coast-odisha.webp",
-    alt: "Sunset reflected across the calm waters of coastal Odisha",
+    src: "/images/hero-chilika-lake.webp",
+    alt: "Boats crossing the broad blue waters of Chilika Lake in Odisha",
+    position: "center center",
+  },
+  {
+    src: "/images/hero-odissi-dance.webp",
+    alt: "An Odissi dancer performing in traditional costume and jewellery",
+    position: "center center",
+  },
+  {
+    src: "/images/hero-pattachitra-artist.webp",
+    alt: "A Pattachitra artist painting a traditional artwork in Odisha",
     position: "center center",
   },
 ] as const;
