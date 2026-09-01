@@ -4,6 +4,7 @@ import { LegalPage, type LegalSection } from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Eastern Risen collects, uses, shares and protects personal information when planning and operating journeys.",
+  alternates: { canonical: "/privacy-policy/" },
 };
 
 const sections: LegalSection[] = [
@@ -11,7 +12,7 @@ const sections: LegalSection[] = [
     id: "scope",
     title: "Who we are and what this covers",
     content: <>
-      <p>Eastern Risen Expedition Pvt. Ltd., also called “Eastern Risen”, “we”, “us” or “our” in this policy, designs and coordinates travel across India and neighbouring destinations. This policy explains how we handle personal information when you visit easternrisen.com, contact us, request an itinerary, make a booking or travel with us.</p>
+      <p>Eastern Risen Expedition Pvt. Ltd., also called “Eastern Risen”, “we”, “us” or “our” in this policy, designs and coordinates travel across India and neighbouring destinations. This policy explains how we handle personal information when you visit easternrisen.co.in, contact us, request an itinerary, make a booking or travel with us.</p>
       <p>If another person arranges a journey for you, they may provide information to us on your behalf. Please share this policy with everyone included in an enquiry or booking.</p>
     </>,
   },

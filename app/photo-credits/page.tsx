@@ -6,6 +6,7 @@ import tourImages from "@/content-bank/data/tour_images.json";
 export const metadata: Metadata = {
   title: "Photo credits",
   description: "Licensing and creator credits for the Eastern Risen journey collection.",
+  alternates: { canonical: "/photo-credits/" },
 };
 
 export default function PhotoCreditsPage() {

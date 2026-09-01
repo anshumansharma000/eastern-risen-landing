@@ -10,6 +10,7 @@ import { AboutTrustStatements } from "@/components/TrustStatements";
 export const metadata: Metadata = {
   title: "About Us",
   description: "Meet Eastern Risen, a specialist travel company rooted in Odisha and designing thoughtful journeys across India and neighbouring lands.",
+  alternates: { canonical: "/about/" },
 };
 
 const principles = [

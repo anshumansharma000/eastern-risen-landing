@@ -10,6 +10,7 @@ import { tours } from "@/lib/tours";
 export const metadata: Metadata = {
   title: "Destinations",
   description: "Explore Eastern Risen destinations across Odisha, India, the Himalaya and neighbouring lands.",
+  alternates: { canonical: "/destinations/" },
 };
 
 function DestinationCard({ destination }: { destination: DestinationDefinition }) {

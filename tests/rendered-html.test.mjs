@@ -3,8 +3,10 @@ import fs from "node:fs";
 import test from "node:test";
 import tourImages from "../content-bank/data/tour_images.json" with { type: "json" };
 
+const SITE_URL = "https://easternrisen.co.in";
+
 async function render(path = "/") {
-  const pathname = new URL(path, "https://easternrisen.com").pathname;
+  const pathname = new URL(path, SITE_URL).pathname;
   const relativeFile = pathname === "/" ? "index.html" : `${pathname.replace(/^\/|\/$/g, "")}/index.html`;
   const html = await fs.promises.readFile(new URL(`../out/${relativeFile}`, import.meta.url), "utf8");
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8" } });
@@ -40,6 +42,45 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /loading="lazy"/);
   assert.doesNotMatch(html, /\/_vinext\/image\?/);
   assert.doesNotMatch(html, /react-loading-skeleton|Server Action/i);
+});
+
+test("publishes canonical URLs on the production domain", async () => {
+  const pages = [
+    ["/", "/"],
+    ["/about", "/about/"],
+    ["/contact", "/contact/"],
+    ["/destinations", "/destinations/"],
+    ["/journal", "/journal/"],
+    ["/journal/odisha-coast", "/journal/odisha-coast/"],
+    ["/services", "/services/"],
+    ["/tours", "/tours/"],
+    ["/tours/odisha-golden-triangle", "/tours/odisha-golden-triangle/"],
+    ["/travel-styles", "/travel-styles/"],
+  ];
+
+  for (const [path, canonicalPath] of pages) {
+    const html = await (await render(path)).text();
+    assert.match(
+      html,
+      new RegExp(`<link rel="canonical" href="${SITE_URL}${canonicalPath}"\\s*\\/?\u003e`, "i"),
+      `${path} should have a self-referencing canonical URL`,
+    );
+  }
+});
+
+test("exports an indexable robots file and a complete sitemap", async () => {
+  const robots = await fs.promises.readFile(new URL("../out/robots.txt", import.meta.url), "utf8");
+  assert.match(robots, /User-Agent:\s*\*/i);
+  assert.match(robots, /Allow:\s*\//i);
+  assert.match(robots, new RegExp(`Sitemap:\\s*${SITE_URL}/sitemap\\.xml`, "i"));
+
+  const sitemap = await fs.promises.readFile(new URL("../out/sitemap.xml", import.meta.url), "utf8");
+  const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+  assert.ok(locations.length > 11 + tourImages.length);
+  assert.ok(locations.every((url) => url.startsWith(`${SITE_URL}/`)));
+  assert.ok(locations.includes(`${SITE_URL}/`));
+  assert.ok(locations.includes(`${SITE_URL}/tours/odisha-golden-triangle/`));
+  assert.ok(locations.includes(`${SITE_URL}/journal/odisha-coast/`));
 });
 
 test("server-renders the data-backed tour collection", async () => {

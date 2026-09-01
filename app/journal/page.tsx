@@ -9,6 +9,7 @@ import { journalEntries } from "@/lib/journal";
 export const metadata: Metadata = {
   title: "Journal",
   description: "Field notes, practical perspectives and stories from Eastern Risen journeys across India and neighbouring lands.",
+  alternates: { canonical: "/journal/" },
 };
 
 export default function JournalPage() {

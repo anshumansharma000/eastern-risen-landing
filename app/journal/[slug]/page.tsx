@@ -24,10 +24,12 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   return {
     title: entry.title,
     description: entry.excerpt,
+    alternates: { canonical: `/journal/${entry.slug}/` },
     openGraph: {
       title: entry.title,
       description: entry.excerpt,
       type: "article",
+      url: `/journal/${entry.slug}/`,
       images: [{ url: entry.image, alt: entry.imageAlt }],
     },
   };

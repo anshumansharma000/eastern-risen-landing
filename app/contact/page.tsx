@@ -8,6 +8,7 @@ import { ContactActions } from "./ContactActions";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Start planning a journey or speak with Eastern Risen in Bhubaneswar, Odisha.",
+  alternates: { canonical: "/contact/" },
 };
 
 const primaryEmail = company.emails[0];

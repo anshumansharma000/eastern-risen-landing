@@ -26,9 +26,11 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   return {
     title: tour.title,
     description: tour.summary,
+    alternates: { canonical: `/tours/${tour.slug}/` },
     openGraph: {
       title: `${tour.title} | Eastern Risen`,
       description: tour.summary,
+      url: `/tours/${tour.slug}/`,
       images: [{ url: tour.image, alt: tour.imageAlt }],
     },
   };

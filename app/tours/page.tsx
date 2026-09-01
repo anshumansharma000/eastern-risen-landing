@@ -8,6 +8,7 @@ import { TourExplorer } from "./TourExplorer";
 export const metadata: Metadata = {
   title: "Journeys",
   description: "Explore Eastern Risen journeys across India, Odisha, the eastern Himalaya and neighbouring lands.",
+  alternates: { canonical: "/tours/" },
 };
 
 export default function ToursPage() {

@@ -15,7 +15,7 @@ const languages = [
 
 type LanguageCode = (typeof languages)[number]["code"];
 
-const productionOrigin = "https://easternrisen.com";
+const productionOrigin = "https://easternrisen.co.in";
 const subscribeToLocation = () => () => {};
 const getLocationHref = () => window.location.href;
 const getServerHref = () => productionOrigin;

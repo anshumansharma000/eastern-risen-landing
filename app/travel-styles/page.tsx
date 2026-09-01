@@ -10,6 +10,7 @@ import { travelStyleDefinitions } from "@/lib/travel-styles";
 export const metadata: Metadata = {
   title: "Travel Styles",
   description: "Explore Eastern Risen journeys by interest, from wildlife and living culture to craft, spirituality and active exploration.",
+  alternates: { canonical: "/travel-styles/" },
 };
 
 export default function TravelStylesPage() {

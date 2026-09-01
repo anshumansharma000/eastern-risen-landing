@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
   },
   description:
     "Private and small-group journeys across India and its neighbouring lands, designed with local knowledge and personal care.",
-  metadataBase: new URL("https://easternrisen.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Eastern Risen | Journeys that bring you closer",
     description:

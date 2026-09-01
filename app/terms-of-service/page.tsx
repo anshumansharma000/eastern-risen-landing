@@ -4,6 +4,7 @@ import { LegalPage, type LegalSection } from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that apply when you use Eastern Risen’s website and arrange travel services with us.",
+  alternates: { canonical: "/terms-of-service/" },
 };
 
 const sections: LegalSection[] = [
@@ -11,7 +12,7 @@ const sections: LegalSection[] = [
     id: "about-these-terms",
     title: "About these terms",
     content: <>
-      <p>These terms govern your use of easternrisen.com and the travel planning and related services offered by Eastern Risen Expedition Pvt. Ltd., referred to here as “Eastern Risen”, “we”, “us” or “our”. By using this website, making an enquiry or confirming services with us, you agree to the parts of these terms that apply to you.</p>
+      <p>These terms govern your use of easternrisen.co.in and the travel planning and related services offered by Eastern Risen Expedition Pvt. Ltd., referred to here as “Eastern Risen”, “we”, “us” or “our”. By using this website, making an enquiry or confirming services with us, you agree to the parts of these terms that apply to you.</p>
       <p>Our website is intended for people who are at least 18 years old and able to enter into a binding agreement. If you make arrangements for other travellers, you confirm that you have their authority to share the information required for the journey and to accept applicable terms on their behalf.</p>
       <p>Your written itinerary, proposal, invoice or booking confirmation may contain trip-specific conditions. If a trip-specific condition conflicts with this page, the trip-specific condition will apply to that booking.</p>
     </>,

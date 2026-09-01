@@ -8,6 +8,7 @@ import { serviceDefinitions } from "@/lib/services";
 export const metadata: Metadata = {
   title: "Travel Services",
   description: "Journey planning, ground transport, flight coordination and travel documentation guidance from Eastern Risen.",
+  alternates: { canonical: "/services/" },
 };
 
 export default function ServicesPage() {
