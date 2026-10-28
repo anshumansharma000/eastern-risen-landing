@@ -1,3 +1,5 @@
+> Historical setup: website forms now use the core API. See [current inquiry setup](docs/inquiries.md).
+
 # Tour enquiry storage in Google Sheets
 
 The tour form can send enquiries directly from this static site to a Google Sheet through a Google Apps Script web app. No Google credentials or private sheet access are exposed in the website.

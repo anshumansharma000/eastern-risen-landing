@@ -1,0 +1,4 @@
+/quote/:token /quote/ 200
+/quote/:token/ /quote/ 200
+
+/account/* /account/ 200

@@ -1,0 +1,55 @@
+.account-print-invoice { display: none; }
+
+@media print {
+  @page { size: A4 portrait; margin: 14mm; }
+  body::before { display: none; }
+  .account-page .account-print-invoice { display: block; width: 100%; color: #000; font-family: Arial, Helvetica, sans-serif; font-size: 8.25pt; line-height: 1.15; }
+  .account-page .account-print-invoice h1,
+  .account-page .account-print-invoice h2,
+  .account-page .account-print-invoice p { max-width: none; margin: 0; color: #000; font-family: inherit; letter-spacing: 0; line-height: 1.15; text-wrap: wrap; }
+  .account-page .account-print-invoice img { object-fit: contain; }
+  .account-page .account-print-invoice .invoice-letterhead { position: relative; min-height: 27mm; padding-top: 10mm; border-bottom: 1px solid #777; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-letterhead h1 { font-size: 11.5pt; font-weight: 700; text-transform: uppercase; }
+  .account-page .account-print-invoice .invoice-letterhead p { font-size: 7.25pt; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-logo { position: absolute; top: 0; right: 0; width: 38mm; height: auto; }
+  .account-page .account-print-invoice .invoice-print-title { padding: 2mm 0 1.5mm; border-bottom: 1px solid #aaa; text-align: center; font-size: 11.5pt; font-weight: 700; }
+  .account-page .account-print-invoice .invoice-print-details { padding: 3mm 0 3.5mm; border-bottom: 1px solid #777; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-details > strong { display: block; margin-bottom: 1.75mm; }
+  .account-page .account-print-invoice .invoice-print-details p { margin: .3mm 0; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-divider { display: inline-block; margin: 0 3mm; }
+  .account-page .account-print-invoice .invoice-print-services { padding: 3mm 0 2.5mm; border-bottom: 1px solid #999; }
+  .account-page .account-print-invoice .invoice-print-services h2 { margin-bottom: 1mm; text-align: center; font-size: 10.5pt; font-weight: 700; }
+  .account-page .account-print-invoice table { width: 100%; min-width: 0; border-collapse: collapse; table-layout: fixed; }
+  .account-page .account-print-invoice th,
+  .account-page .account-print-invoice td { min-width: 0; padding: .75mm 1mm; border: 0; background: transparent; color: #000; font-size: 8.25pt; text-align: left; text-transform: none; letter-spacing: 0; vertical-align: top; white-space: normal; }
+  .account-page .account-print-invoice th { font-weight: 700; }
+  .account-page .account-print-invoice thead th:nth-child(2),
+  .account-page .account-print-invoice tbody td:nth-child(2) { text-align: left; white-space: normal; }
+  .account-page .account-print-invoice th:first-child,
+  .account-page .account-print-invoice td:first-child { width: 14mm; }
+  .account-page .account-print-invoice th:last-child,
+  .account-page .account-print-invoice td:last-child { width: 36mm; text-align: right; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice td small { display: block; margin-top: .35mm; font-size: 7pt; }
+  .account-page .account-print-invoice .invoice-print-description { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-line-tax { color: #444; font-size: 6.75pt; line-height: 1.15; }
+  .account-page .account-print-invoice tfoot td { padding-top: 1.5mm; font-weight: 700; text-align: right; }
+  .account-page .account-print-invoice thead { display: table-header-group; }
+  .account-page .account-print-invoice tfoot { display: table-row-group; }
+  .account-page .account-print-invoice tr { break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-calculation { width: 72mm; max-width: 100%; margin: 2.5mm 0 1.5mm auto; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-calculation > div { display: flex; justify-content: space-between; gap: 5mm; padding: .65mm 0; }
+  .account-page .account-print-invoice .invoice-print-calculation > div > :last-child { text-align: right; white-space: nowrap; }
+  .account-page .account-print-invoice .invoice-print-tax-heading { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: .75mm; padding-bottom: .75mm; border-bottom: 1px solid #bbb; }
+  .account-page .account-print-invoice .invoice-print-tax-heading small { color: #555; font-size: 6.75pt; }
+  .account-page .account-print-invoice .invoice-print-grand-total { margin-top: 1.25mm; font-size: 9pt; }
+  .account-page .account-print-invoice .invoice-print-amount-words { padding: 1.5mm 0 1mm; border-bottom: 1px solid #999; font-weight: 700; font-style: italic; }
+  .account-page .account-print-invoice .invoice-print-notes { padding-top: 2mm; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-notes p { margin-bottom: 1mm; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-signature { display: flex; flex-direction: column; justify-content: flex-end; gap: .5mm; width: 62mm; min-height: 14mm; margin-left: auto; text-align: center; text-transform: uppercase; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-signature img { width: 15mm; height: auto; margin: 0 auto; }
+  .account-page .account-print-invoice .invoice-print-signature strong { font-size: 9pt; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-banks { margin-top: 2mm; padding: 1.5mm 0; border-top: 1px solid #999; border-bottom: 1px solid #999; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-banks p { margin-top: .5mm; font-size: 7pt; overflow-wrap: anywhere; }
+  .account-page .account-print-invoice .invoice-print-accreditations { padding-top: 2.5mm; break-inside: avoid; }
+  .account-page .account-print-invoice .invoice-print-accreditations img { display: block; width: 112mm; max-width: 100%; height: auto; }
+}

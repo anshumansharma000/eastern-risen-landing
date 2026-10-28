@@ -37,8 +37,7 @@ test("exports the Eastern Risen landing page", async () => {
   assert.match(html, /Pause image carousel/i);
   assert.match(html, /src="\/images\/eastern-risen-logo\.png"/);
   assert.match(html, /490,302(?:<!-- -->)? site visits and counting/i);
-  assert.match(html, /https:\/\/gc\.zgo\.at\/count\.js/i);
-  assert.match(html, /https:\/\/easternrisen\.goatcounter\.com\/count/i);
+  assert.doesNotMatch(html, /<script[^>]*goatcounter/i);
   assert.match(html, /loading="lazy"/);
   assert.doesNotMatch(html, /\/_vinext\/image\?/);
   assert.doesNotMatch(html, /react-loading-skeleton|Server Action/i);
@@ -201,7 +200,9 @@ test("server-renders the contact page", async () => {
   assert.match(html, /info@easternrisen\.com/i);
   assert.match(html, /Bhubaneswar/i);
   assert.match(html, /Guwahati/i);
-  assert.doesNotMatch(html, /<form|Server Action/i);
+  assert.match(html, /<form/);
+  assert.match(html, /Send my enquiry/);
+  assert.doesNotMatch(html, /Server Action/i);
 });
 
 test("server-renders the about page", async () => {
@@ -257,4 +258,18 @@ test("server-renders the legal pages", async () => {
   assert.match(privacy, /Your choices and rights/i);
   assert.match(privacy, /We use GoatCounter to understand general website traffic/i);
   assert.doesNotMatch(`${terms}${privacy}`, /Server Action/i);
+});
+
+
+test("exports a private quote shell with no indexing or analytics", async () => {
+  const html = await (await render("/quote")).text();
+  const headers = await fs.promises.readFile(new URL("../out/_headers", import.meta.url), "utf8");
+  const redirects = await fs.promises.readFile(new URL("../out/_redirects", import.meta.url), "utf8");
+  assert.match(html, /<title>Your private quote \| Eastern Risen<\/title>/i);
+  assert.match(html, /<meta name="robots" content="noindex, nofollow"/i);
+  assert.match(html, /<meta name="referrer" content="no-referrer"/i);
+  assert.doesNotMatch(html, /rel="canonical"|goatcounter|sdk\.cashfree\.com/i);
+  assert.match(headers, /\/quote\/\*\s+Cache-Control: no-store/);
+  assert.match(headers, /Referrer-Policy: no-referrer/);
+  assert.match(redirects, /\/quote\/:token \/quote\/ 200/);
 });

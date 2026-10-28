@@ -86,3 +86,7 @@ next-env.d.ts
 /content-bank/data/tour_review_queue.json
 
 /.openai
+*.md
+
+# Version the customer account integration and launch notes.
+!docs/customer-account.md

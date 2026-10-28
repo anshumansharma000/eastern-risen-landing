@@ -1,0 +1,9 @@
+'use client';
+import { useState } from 'react';
+import { AccountError, type CustomerClient, type Profile } from '@/lib/account/api';
+import { newPassword, confirmPassword } from './AuthPages';
+import { AccountForm, Notice } from './ui';
+export function ProfilePage({ client, profile, update, signOut }: { client: CustomerClient; profile: Profile; update: (profile: Profile) => void; signOut: () => void }) {
+  const [saved, setSaved] = useState(false);
+  return <div className="account-columns"><section className="account-card"><h2>Personal details</h2><p>Email (read-only): <strong>{profile.email}</strong></p><p>Your personal name does not change your customer or company’s invoice details.</p>{saved && <Notice>Your name has been updated.</Notice>}<AccountForm fields={[{ name: 'displayName', label: 'Your name', initial: profile.displayName, min: 1, max: 200, autocomplete: 'name' }]} action="Save name" submit={async values => { const name = values.displayName.trim(); if (!name) throw new AccountError(400, 'REQUEST_VALIDATION_FAILED', 'Enter your name.', '', { 'body.displayName': 'Enter a nonblank name.' }); const result = await client.data<Profile>('/me', 'PATCH', { displayName: name }); update(result); setSaved(true); }} /></section><section className="account-card"><h2>Change password</h2><p>Changing your password signs out all customer account sessions. Sign in again afterwards.</p><AccountForm fields={[{ name: 'currentPassword', label: 'Current password', type: 'password', min: 1, max: 128, autocomplete: 'current-password' }, newPassword, confirmPassword]} action="Change password and sign out" submit={async values => { await client.request('/me/change-password', 'POST', { currentPassword: values.currentPassword, newPassword: values.newPassword }); signOut(); }} /></section></div>;
+}

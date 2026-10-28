@@ -1,0 +1,78 @@
+.quote-page { min-height: 100vh; background: #fbf7f1; }
+.quote-shell { width: min(100% - 32px, 1100px); margin-inline: auto; }
+.quote-header { border-bottom: 1px solid #e9dfd3; background: #fffdf9; }
+.quote-header .quote-shell { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.quote-brand { display: block; width: 176px; }
+.quote-brand img { display: block; width: 100%; height: auto; object-fit: contain; }
+.quote-header__label { color: var(--rust-dark); font-size: 11px; font-weight: 700; letter-spacing: .11em; text-align: right; text-transform: uppercase; }
+.quote-main { padding-block: clamp(48px, 7vw, 92px) 100px; }
+.quote-intro { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 44px; }
+.quote-intro h1, .quote-empty h1 { max-width: 740px; font-size: clamp(48px, 7vw, 86px); line-height: .98; }
+.quote-intro > div:first-child > p:last-child { max-width: 570px; margin: 24px 0 0; color: var(--grey); }
+.quote-dates { flex: 0 0 245px; padding: 20px 22px; border-left: 2px solid var(--rust); }
+.quote-dates span, .quote-invoice-number small, .quote-total small { display: block; color: var(--grey); font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: .04em; }
+.quote-dates strong { display: block; margin-top: 7px; font-size: 13px; line-height: 1.5; }
+.quote-card { margin-top: 18px; padding: clamp(26px, 5vw, 60px); border: 1px solid #eee5d9; border-radius: 24px; background: white; box-shadow: 0 16px 50px rgba(69, 48, 29, .045); }
+.quote-card__heading { display: flex; justify-content: space-between; align-items: start; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid #eee6db; }
+.quote-card__heading .eyebrow { margin-bottom: 12px; }
+.quote-card h2 { font-size: clamp(37px, 5vw, 58px); line-height: 1.03; }
+.quote-total, .quote-invoice-number { flex: 0 0 auto; color: var(--rust-dark); font-family: var(--display); font-size: clamp(28px, 3.4vw, 42px); line-height: 1.1; text-align: right; }
+.quote-total small, .quote-invoice-number small { margin-top: 8px; }
+.quote-copy { padding-top: 28px; }
+.quote-copy p { white-space: pre-line; }
+.quote-description { margin: 0 0 30px; max-width: 780px; font-size: 18px; line-height: 1.8; }
+.quote-copy__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.quote-copy__grid > div, .quote-terms { padding: 25px; border-radius: 15px; background: #faf5ee; }
+.quote-copy h3, .quote-receipts h3 { margin-bottom: 10px; font-family: var(--body); font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.quote-copy__grid p, .quote-terms p { margin: 0; color: #514a44; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+.quote-terms { margin-top: 16px; background: #f6f2ec; }
+.quote-expiry { margin: 28px 0 0; color: var(--grey); font-size: 13px; }
+.quote-expiry strong { color: var(--ink); }
+.quote-accept { margin-top: 30px; padding-top: 26px; border-top: 1px solid #eee6db; }
+.quote-accept label { display: flex; align-items: start; gap: 12px; max-width: 660px; margin-bottom: 22px; font-size: 14px; cursor: pointer; }
+.quote-accept input { width: 20px; height: 20px; margin: 2px 0 0; flex: none; accent-color: var(--rust); }
+.quote-accept .button:disabled, .quote-milestones .button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+.quote-accept > p { margin: 14px 0 0; color: var(--grey); font-size: 12px; }
+.quote-notice { margin-top: 18px; padding: 20px 24px; border: 1px solid #e7ded1; border-radius: 16px; background: white; }
+.quote-card .quote-notice { margin-top: 25px; }
+.quote-notice--warm { border-color: #eacba9; background: #fff6ea; }
+.quote-notice--success { border-color: #b9d4c3; background: #f1f8f2; }
+.quote-notice strong { display: block; font-size: 15px; }
+.quote-notice p { margin: 5px 0 0; color: #56504b; font-size: 13px; }
+.quote-balance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0 0; }
+.quote-balance > div { padding: 22px; border-radius: 14px; background: #faf5ee; }
+.quote-balance dt { color: var(--grey); font-size: 12px; }
+.quote-balance dd { margin: 7px 0 0; font-family: var(--display); font-size: clamp(24px, 3vw, 34px); line-height: 1.1; }
+.quote-balance__due { background: #f9eee2 !important; }
+.quote-balance__due dd { color: var(--rust-dark); }
+.quote-receipts { margin-top: 36px; }
+.quote-receipts ul, .quote-milestones { padding: 0; margin: 0; list-style: none; }
+.quote-receipts li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-top: 1px solid #eee6db; font-size: 13px; }
+.quote-receipts li small { display: block; margin-top: 3px; color: var(--grey); }
+.quote-milestones { margin-top: 8px; }
+.quote-milestones li { display: flex; align-items: center; gap: 18px; padding: 25px 0; border-bottom: 1px solid #eee6db; }
+.quote-milestones li:last-child { border-bottom: 0; padding-bottom: 0; }
+.quote-milestone__number { width: 42px; height: 42px; display: grid; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #f8eee4; color: var(--rust-dark); font-size: 11px; font-weight: 700; }
+.quote-milestone__main { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+.quote-milestone__main h3 { font-family: var(--body); font-size: 15px; font-weight: 700; letter-spacing: 0; }
+.quote-milestone__main p, .quote-milestone__amount span { display: block; margin: 3px 0 0; color: var(--grey); font-size: 12px; }
+.quote-milestone__amount { min-width: 135px; text-align: right; }
+.quote-milestone__amount strong { font-size: 15px; }
+.quote-milestones .button { min-height: 44px; margin-left: 8px; white-space: nowrap; }
+.quote-paid { padding: 6px 12px; border-radius: 99px; background: #e8f3e9; color: #2c6540; font-size: 11px; font-weight: 700; }
+.quote-message { margin-bottom: 20px; padding: 14px 18px; border-radius: 12px; background: #fff0df; color: #7b3918; font-size: 13px; }
+.quote-help { display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e7ddd0; font-size: 13px; }
+.quote-help p { margin: 0; color: var(--grey); }
+.quote-text-link, .quote-inline-button { color: var(--rust-dark); font-size: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.quote-inline-button { display: block; padding: 0; margin-top: 12px; border: 0; background: transparent; cursor: pointer; }
+.quote-inline-button:disabled { opacity: .6; cursor: wait; }
+.quote-empty { max-width: 740px; min-height: 45vh; padding-top: 25px; }
+.quote-empty > p:not(.eyebrow) { margin: 22px 0; color: var(--grey); }
+.quote-empty .button { margin-right: 20px; }
+.quote-footer { border-top: 1px solid #e9dfd3; color: var(--grey); font-size: 11px; }
+.quote-footer .quote-shell { display: flex; justify-content: space-between; gap: 12px; padding-block: 27px; }
+@media (max-width: 760px) { .quote-header .quote-shell { min-height: 74px; } .quote-brand { width: 145px; } .quote-header__label { font-size: 9px; } .quote-intro { display: block; margin-bottom: 32px; } .quote-dates { margin-top: 28px; } .quote-card__heading { display: block; } .quote-total, .quote-invoice-number { display: block; margin-top: 24px; text-align: left; } .quote-copy__grid, .quote-balance { grid-template-columns: 1fr; } .quote-milestones li { flex-wrap: wrap; } .quote-milestone__main { flex: 1 1 calc(100% - 65px); } .quote-milestones .button, .quote-paid { margin-left: 60px; } .quote-help { display: block; } .quote-help .quote-text-link { display: inline-block; margin-top: 8px; } }
+@media (max-width: 460px) { .quote-milestone__main { display: block; } .quote-milestone__amount { text-align: left; margin-top: 10px; } .quote-milestones .button { width: calc(100% - 60px); } .quote-card { border-radius: 18px; } .quote-footer .quote-shell { display: block; } .quote-footer span { display: block; } }
+
+.quote-refresh { display: flex; justify-content: flex-end; margin-bottom: 16px; min-height: 32px; }
+.quote-refresh .quote-inline-button { margin-top: 0; }

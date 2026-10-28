@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { Analytics } from "@/components/Analytics";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -46,11 +46,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <Script
-          data-goatcounter="https://easternrisen.goatcounter.com/count"
-          src="https://gc.zgo.at/count.js"
-          strategy="afterInteractive"
-        />
+        <Analytics />
       </body>
     </html>
   );

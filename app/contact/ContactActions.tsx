@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { ContactForm } from "@/components/ContactForm";
 
 const subscribeToLocation = () => () => {};
 const getLocationSearch = () => window.location.search;
@@ -16,6 +17,7 @@ export function ContactActions({ primaryEmail }: { primaryEmail: string }) {
 
   return (
     <>
+      <ContactForm service={service} />
       {service ? <p className="contact-context">Enquiring about <strong>{service}</strong></p> : null}
       <section className="contact-actions shell" aria-label="Contact Eastern Risen">
         <article className="contact-action contact-action--primary">

@@ -2,16 +2,19 @@
 
 import { useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 
-const enquiryEndpoint = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL;
+import { inquiryAttempt, submitInquiry } from "@/lib/inquiries/api";
 
 type TourEnquiryModalProps = {
-  tourTitle: string;
-  region: string;
-  duration: string;
+  tourTitle?: string;
+  region?: string;
+  duration?: string;
   compact?: boolean;
+  general?: boolean;
 };
 
-export function TourEnquiryModal({ tourTitle, region, duration, compact = false }: TourEnquiryModalProps) {
+export function TourEnquiryModal({ tourTitle = "", region = "", duration = "", compact = false, general = false }: TourEnquiryModalProps) {
+  const attempt = useRef<{ content: string; id: string } | null>(null);
+  const sending = useRef(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const descriptionId = useId();
@@ -21,7 +24,6 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
 
   function openModal() {
     setSubmitted(false);
-    setSubmitting(false);
     setSubmitError("");
     dialogRef.current?.showModal();
   }
@@ -38,37 +40,24 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
     event.preventDefault();
     setSubmitError("");
 
-    if (!enquiryEndpoint) {
-      setSubmitError("Enquiry delivery is not configured yet. Please contact us by email or phone.");
-      return;
-    }
-
+    if (sending.current) return;
     const form = event.currentTarget;
     const fields = Object.fromEntries(new FormData(form).entries());
 
+    sending.current = true;
     setSubmitting(true);
-
     try {
-      // Apps Script does not return browser CORS headers. A simple no-cors POST
-      // lets this static site deliver the enquiry without exposing credentials.
-      await fetch(enquiryEndpoint, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          ...fields,
-          tourTitle,
-          region,
-          duration,
-          pageUrl: window.location.href,
-        }),
-      });
-
+      const payload = { ...fields, type: general ? "TOUR" as const : "TOUR_DETAIL" as const,
+        tourTitle, region, duration, pageUrl: window.location.origin + window.location.pathname };
+      attempt.current = inquiryAttempt(attempt.current, payload);
+      await submitInquiry({ ...payload, submissionId: attempt.current.id });
+      attempt.current = null;
       form.reset();
       setSubmitted(true);
-    } catch {
-      setSubmitError("We could not send your enquiry. Please check your connection and try again.");
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "We could not send your enquiry. Please try again.");
     } finally {
+      sending.current = false;
       setSubmitting(false);
     }
   }
@@ -76,7 +65,7 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
   return (
     <>
       <button className="button" type="button" onClick={openModal}>
-        Make this yours {!compact ? <span aria-hidden="true">↗</span> : null}
+        {general ? "Plan a journey" : "Make this yours"} {!compact ? <span aria-hidden="true">↗</span> : null}
       </button>
 
       <dialog
@@ -106,11 +95,11 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
                 <p className="eyebrow eyebrow--warm">Make it yours</p>
                 <h2 id={titleId}>Tell us how you would like to travel.</h2>
                 <p id={descriptionId}>Share the essentials and anything you would change. Our team will analyse and review your requirements, then send a personalised plan and quote to your contact email and number.</p>
-                <div className="tour-enquiry-modal__journey" aria-label="Selected journey">
+                {!general && <div className="tour-enquiry-modal__journey" aria-label="Selected journey">
                   <span>Selected journey</span>
                   <strong>{tourTitle}</strong>
                   <small>{region} · {duration}</small>
-                </div>
+                </div>}
               </header>
 
               <form className="tour-enquiry-form" onSubmit={handleSubmit}>
@@ -118,24 +107,24 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
                   <span>Website</span>
                   <input name="website" type="text" tabIndex={-1} autoComplete="off" />
                 </label>
-                <fieldset>
+                <fieldset disabled={submitting}>
                   <legend>Your details</legend>
                   <div className="tour-enquiry-form__grid">
                     <label>
                       <span>Full name *</span>
-                      <input name="fullName" type="text" autoComplete="name" required />
+                      <input name="fullName" maxLength={200} type="text" autoComplete="name" required />
                     </label>
                     <label>
                       <span>Email address *</span>
-                      <input name="email" type="email" autoComplete="email" required />
+                      <input name="email" maxLength={320} type="email" autoComplete="email" required />
                     </label>
                     <label>
                       <span>Phone or WhatsApp *</span>
-                      <input name="phone" type="tel" autoComplete="tel" placeholder="Include country code" required />
+                      <input name="phone" maxLength={64} type="tel" autoComplete="tel" placeholder="Include country code" required />
                     </label>
                     <label>
                       <span>Country of residence *</span>
-                      <input name="country" type="text" autoComplete="country-name" required />
+                      <input name="country" maxLength={100} type="text" autoComplete="country-name" required />
                     </label>
                     <label className="tour-enquiry-form__wide">
                       <span>Preferred contact method *</span>
@@ -149,12 +138,12 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
                   </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset disabled={submitting}>
                   <legend>Your travel plans</legend>
                   <div className="tour-enquiry-form__grid">
                     <label className="tour-enquiry-form__wide">
                       <span>Preferred travel dates *</span>
-                      <input name="travelDates" type="text" placeholder="For example, 12–20 October 2026 or flexible" required />
+                      <input name="travelDates" maxLength={300} type="text" placeholder="For example, 12–20 October 2026 or flexible" required />
                     </label>
                     <label>
                       <span>Adults *</span>
@@ -172,15 +161,15 @@ export function TourEnquiryModal({ tourTitle, region, duration, compact = false 
                     </label>
                     <label>
                       <span>Interests or changes you would like</span>
-                      <textarea name="interests" rows={3} placeholder="Places, experiences, pace or parts of the route you would like us to adapt" />
+                      <textarea name="interests" maxLength={5000} rows={3} placeholder="Places, experiences, pace or parts of the route you would like us to adapt" />
                     </label>
                     <label>
                       <span>Dietary, accessibility or other requirements</span>
-                      <textarea name="requirements" rows={3} />
+                      <textarea name="requirements" maxLength={5000} rows={3} />
                     </label>
                     <label className="tour-enquiry-form__wide">
                       <span>Anything else you would like us to know?</span>
-                      <textarea name="additionalNotes" rows={4} placeholder="Add anything that does not have a dedicated field above" />
+                      <textarea name="additionalNotes" maxLength={10000} rows={4} placeholder="Add anything that does not have a dedicated field above" />
                     </label>
                   </div>
                 </fieldset>
